@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, LogIn } from "lucide-react";
 
 interface NavbarProps {
-  currentView: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming';
-  setCurrentView: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming') => void;
+  currentView: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin';
+  setCurrentView: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin') => void;
 }
 
 const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
@@ -15,7 +15,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-lg border-b border-gray-700/50"
+      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-gray-900/70 to-gray-800/70 backdrop-blur-lg border-b border-gray-700/30"
       style={{
         borderBottomLeftRadius: "2rem",
         borderBottomRightRadius: "2rem",
@@ -111,6 +111,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
               </motion.button>
+
             </div>
           </div>
 
@@ -135,7 +136,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-gray-800/95 backdrop-blur-lg border-t border-gray-700/50"
+            className="md:hidden bg-gray-800/70 backdrop-blur-lg border-t border-gray-700/30"
           >
             <div className="px-4 py-4 space-y-4">
 

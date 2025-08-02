@@ -179,8 +179,9 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="absolute inset-0"
             >
-              <div className={`h-full bg-gradient-to-br ${getSportGradient(sports[currentIndex]?.name)} p-1 rounded-3xl`}>
-                <div className="h-full bg-gray-900/95 backdrop-blur-lg rounded-3xl p-8 md:p-12 flex items-center">
+              <div className="h-full bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/20 rounded-3xl"></div>
+                <div className="relative h-full p-8 md:p-12 flex items-center">
                   <div className="grid md:grid-cols-2 gap-12 items-center w-full">
                     <motion.div
                       initial={{ opacity: 0, x: -50 }}
@@ -240,7 +241,7 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                      <div className="aspect-square bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl flex items-center justify-center overflow-hidden relative">
+                      <div className="aspect-square bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl flex items-center justify-center overflow-hidden relative shadow-2xl">
                         {sports[currentIndex]?.imageUrl ? (
                           <img
                             src={sports[currentIndex].imageUrl}
@@ -279,7 +280,7 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
         {/* Navigation Arrows */}
         <button
           onClick={goToPrevious}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all group"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:border-white/30 transition-all group shadow-xl"
         >
           <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -288,7 +289,7 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
 
         <button
           onClick={goToNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all group"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:border-white/30 transition-all group shadow-xl"
         >
           <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -301,9 +302,9 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                  ? 'bg-[#89D3EC] scale-125'
-                  : 'bg-white/30 hover:bg-white/50'
+              className={`w-3 h-3 rounded-full transition-all duration-300 border ${index === currentIndex
+                  ? 'bg-gradient-to-r from-[#D7243F] to-[#89D3EC] scale-125 border-white/20 shadow-lg'
+                  : 'bg-white/20 hover:bg-white/40 border-white/10 hover:border-white/30'
                 }`}
             />
           ))}
@@ -311,9 +312,9 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
 
         {/* Progress Bar */}
         <div className="mt-6 max-w-md mx-auto">
-          <div className="h-1 bg-white/20 rounded-full overflow-hidden">
+          <div className="h-1 bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-full overflow-hidden border border-white/10">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#D7243F] to-[#89D3EC]"
+              className="h-full bg-gradient-to-r from-[#D7243F] via-[#89D3EC] to-[#D7243F] shadow-sm"
               initial={{ width: "0%" }}
               animate={{ width: isAutoPlaying ? "100%" : "0%" }}
               transition={{ duration: 5, ease: "linear" }}

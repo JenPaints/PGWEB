@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Zap, Target, Waves, Dumbbell } from "lucide-react";
+import { useContent } from "../contexts/ContentContext";
 
 const pricingPlans = [
   {
@@ -70,6 +71,7 @@ const pricingPlans = [
 ];
 
 const PricingSection = () => {
+  const { content } = useContent();
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
 
   return (
@@ -132,10 +134,10 @@ const PricingSection = () => {
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pricingPlans.map((plan, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {content.pricing.plans.map((plan, index) => (
             <motion.div
-              key={plan.sport}
+              key={plan.name}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -159,20 +161,14 @@ const PricingSection = () => {
 
               <div className="text-center mb-8">
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-2xl flex items-center justify-center">
-                  <plan.icon className="w-8 h-8 text-white" />
+                  <Zap className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{plan.sport}</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                 <div className="mb-4">
                   <span className="text-4xl font-bold text-white">
-                    ₹{billingCycle === 'yearly' ? Math.round(plan.price * 0.8).toLocaleString('en-IN') : plan.price.toLocaleString('en-IN')}
+                    {plan.price}
                   </span>
-                  <span className="text-gray-400">/{billingCycle === 'yearly' ? 'year' : 'month'}</span>
                 </div>
-                {billingCycle === 'yearly' && (
-                  <span className="text-[#89D3EC] text-sm">
-                    Save ₹{Math.round(plan.price * 2.4).toLocaleString('en-IN')} per year
-                  </span>
-                )}
               </div>
 
               <div className="space-y-4 mb-8">

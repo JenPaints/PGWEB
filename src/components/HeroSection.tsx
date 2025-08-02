@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useContent } from "../contexts/ContentContext";
+import { analytics } from "../services/analytics";
 
 const HeroSection = () => {
+  const { content } = useContent();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -150,10 +153,10 @@ const HeroSection = () => {
             transition={{ duration: 1.2, delay: 0.5 }}
           >
             <span className="bg-gradient-to-r from-[#D7243F] via-[#89D3EC] to-[#D7243F] bg-clip-text text-transparent">
-              Unleash Your
+              {content.hero.title}
             </span>
             <br />
-            <span className="text-white">Athletic Potential</span>
+            <span className="text-white">{content.hero.subtitle}</span>
           </motion.h1>
 
           <motion.p
@@ -162,8 +165,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            Transform your game with world-class coaching in Football, Basketball, Badminton & Swimming.
-            <span className="text-[#89D3EC] font-semibold"> Join the athletes</span> of Playgram.
+            {content.hero.description}
           </motion.p>
 
           <motion.div
@@ -175,6 +177,12 @@ const HeroSection = () => {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(215, 36, 63, 0.3)" }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                analytics.trackEvent('download_app_click', {
+                  location: 'hero_section',
+                  button_text: 'Download App Now'
+                });
+              }}
               className="group relative px-8 py-4 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-full text-white font-bold text-lg shadow-2xl overflow-hidden"
             >
               <span className="relative z-10 flex items-center space-x-3">
@@ -189,6 +197,12 @@ const HeroSection = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                analytics.trackEvent('free_trial_click', {
+                  location: 'hero_section',
+                  button_text: 'Start Free Trial'
+                });
+              }}
               className="px-8 py-4 border-2 border-[#89D3EC] text-[#89D3EC] rounded-full font-bold text-lg hover:bg-[#89D3EC] hover:text-gray-900 transition-all duration-300"
             >
               Start Free Trial

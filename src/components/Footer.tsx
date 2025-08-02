@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { Mail, Instagram, Facebook, Twitter, Youtube } from "lucide-react";
+import { useContent } from "../contexts/ContentContext";
 
-const Footer = () => {
+interface FooterProps {
+  setCurrentView?: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin') => void;
+}
+
+const Footer = ({ setCurrentView }: FooterProps) => {
+  const { content } = useContent();
   return (
     <footer className="bg-gray-900/95 backdrop-blur-lg border-t border-gray-700/50 py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -22,7 +28,7 @@ const Footer = () => {
               </span>
             </motion.div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Transforming athletes through world-class coaching in Football, Basketball, Badminton & Swimming.
+              {content.footer.description}
             </p>
             <div className="flex space-x-4">
               {[
@@ -85,17 +91,19 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6">Contact</h3>
             <div className="space-y-3 text-gray-300">
-              <div className="flex items-start space-x-2">
-                <span>📍</span>
-                <span className="text-sm">4th Floor, BL Complex, 462, 16th Cross Rd,<br />Sector 4, HSR Layout, Bengaluru, Karnataka 560102</span>
-              </div>
+              {content.footer.address && (
+                <div className="flex items-start space-x-2">
+                  <span>📍</span>
+                  <span className="text-sm">{content.footer.address}</span>
+                </div>
+              )}
               <div className="flex items-center space-x-2">
                 <span>📞</span>
-                <span className="text-sm">+91 7483223862</span>
+                <span className="text-sm">{content.footer.phone}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">management@playgram.app</span>
+                <span className="text-sm">{content.footer.email}</span>
               </div>
             </div>
           </div>
@@ -117,6 +125,12 @@ const Footer = () => {
               <a href="#cookies" className="text-gray-400 hover:text-[#89D3EC] transition-colors">
                 Cookie Policy
               </a>
+              <button 
+                onClick={() => setCurrentView?.('admin')}
+                className="text-gray-400 hover:text-[#89D3EC] transition-colors"
+              >
+                Admin
+              </button>
             </div>
           </div>
         </div>

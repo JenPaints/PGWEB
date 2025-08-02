@@ -1,54 +1,21 @@
 import { motion } from "framer-motion";
 import CardFlip from "./CardFlip";
 import { Users, Trophy, Shield, Zap, Target, Star } from "lucide-react";
+import { useContent } from "../contexts/ContentContext";
 
 const SportsProsBenefits = () => {
+  const { content } = useContent();
+  
   const playgramCards = [
     {
-      title: "Football Excellence",
-      subtitle: "Master the beautiful game",
-      description: "Playgram's football coaches bring professional techniques and tactical expertise to help you dominate the field with world-class training methods.",
+      title: "About Us",
+      subtitle: "Our Coaching Speaks",
+      description: "Our coaches and training method ensures the best outcome for the athletes",
       features: [
-        "Professional Coaching",
-        "Tactical Training",
-        "Skill Development",
-        "Match Analysis"
-      ],
-      icon: Trophy
-    },
-    {
-      title: "Basketball Mastery",
-      subtitle: "Elevate your court game",
-      description: "Our basketball experts focus on shooting precision, defensive strategies, and team play to transform you into a complete player.",
-      features: [
-        "Shooting Techniques",
-        "Defensive Skills",
-        "Court Vision",
-        "Team Strategies"
-      ],
-      icon: Target
-    },
-    {
-      title: "Badminton Precision",
-      subtitle: "Perfect your racquet skills",
-      description: "Playgram's badminton specialists teach advanced footwork, shot placement, and competitive strategies for singles and doubles excellence.",
-      features: [
-        "Footwork Training",
-        "Shot Precision",
-        "Court Positioning",
-        "Mental Game"
-      ],
-      icon: Zap
-    },
-    {
-      title: "Swimming Excellence",
-      subtitle: "Dive into perfection",
-      description: "Our swimming coaches refine your stroke technique, build endurance, and develop competitive racing strategies for all swimming styles.",
-      features: [
-        "Stroke Technique",
-        "Breathing Control",
-        "Endurance Building",
-        "Racing Strategies"
+        "Feel The differnce",
+        "Learn from the best",
+        "Best facilities",
+        "Sports Strategies"
       ],
       icon: Shield
     },
@@ -97,9 +64,9 @@ const SportsProsBenefits = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <span className="text-white">Why Choose </span>
+            <span className="text-white">{content.benefits.title.split(' ').slice(0, -1).join(' ')} </span>
             <span className="bg-gradient-to-r from-[#D7243F] via-[#89D3EC] to-[#D7243F] bg-clip-text text-transparent">
-              Playgram?
+              {content.benefits.title.split(' ').slice(-1)[0]}
             </span>
           </motion.h2>
           <motion.p 
@@ -109,7 +76,7 @@ const SportsProsBenefits = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Discover the benefits of Playgram — your all-in-one sports coaching platform connecting you with expert coaches, training programs in football, basketball, badminton, and swimming, all in one app
+            {content.benefits.subtitle}
           </motion.p>
         </div>
 

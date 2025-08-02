@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useContent } from "../contexts/ContentContext";
 
 const videos = [
   {
@@ -53,6 +54,7 @@ const videos = [
 ];
 
 const CoachingVideos = () => {
+  const { content } = useContent();
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
 
   return (
@@ -66,12 +68,12 @@ const CoachingVideos = () => {
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-[#D7243F] to-[#89D3EC] bg-clip-text text-transparent">
-              Coaching
+              {content.coachingVideos.title.split(' ')[0]}
             </span>
-            <span className="text-white"> Videos</span>
+            <span className="text-white"> {content.coachingVideos.title.split(' ').slice(1).join(' ')}</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Learn from the best with our comprehensive video library featuring world-class coaches and proven techniques.
+            {content.coachingVideos.subtitle}
           </p>
         </motion.div>
 

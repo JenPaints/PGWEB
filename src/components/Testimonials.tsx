@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useContent } from "../contexts/ContentContext";
 
 const testimonials = [
   {
@@ -13,7 +14,7 @@ const testimonials = [
   {
     id: 2,
     name: "Deekshith",
-    sport: "Vice President", 
+    sport: "Vice President",
     rating: 5,
     comment: "At Playgram, we combine technology and sports expertise to make training smarter, more accessible, and more engaging. Our vision is to build the ultimate destination for sports lovers who want to learn, compete, and excel.",
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150",
@@ -22,28 +23,32 @@ const testimonials = [
     id: 3,
     name: "Vishu",
     sport: "Swimming",
-    rating: 5, 
+    rating: 5,
     comment: "",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
   }
 ];
 
 const Testimonials = () => {
+  const { content } = useContent();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Use content testimonials, fallback to static ones if empty
+  const displayTestimonials = content.testimonials.length > 0 ? content.testimonials : testimonials;
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [displayTestimonials.length]);
 
   const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length);
   };
 
   return (
@@ -64,7 +69,7 @@ const Testimonials = () => {
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="text-white">What Our </span>
             <span className="bg-gradient-to-r from-[#D7243F] to-[#89D3EC] bg-clip-text text-transparent">
-              Founders Say
+              Athletes Say
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -84,29 +89,30 @@ const Testimonials = () => {
           >
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="flex-shrink-0">
-                <img
-                  src={testimonials[currentIndex].image}
-                  alt={testimonials[currentIndex].name}
-                  className="w-24 h-24 rounded-full object-cover border-4 border-gradient-to-r from-[#D7243F] to-[#89D3EC]"
-                />
+                <div className="w-24 h-24 rounded-full bg-gradient-to-r from-[#D7243F] to-[#89D3EC] flex items-center justify-center text-white text-2xl font-bold">
+                  {displayTestimonials[currentIndex].name.charAt(0)}
+                </div>
               </div>
-              
-              <div className="flex-1 text-center md:text-left">
 
-                
+              <div className="flex-1 text-center md:text-left">
+                <div className="flex justify-center md:justify-start mb-4">
+                  {[...Array(displayTestimonials[currentIndex].rating)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
                 <blockquote className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
-                  "{testimonials[currentIndex].comment}"
+                  "{displayTestimonials[currentIndex].content}"
                 </blockquote>
-                
+
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
-                    <h4 className="text-white font-bold text-lg">{testimonials[currentIndex].name}</h4>
+                    <h4 className="text-white font-bold text-lg">{displayTestimonials[currentIndex].name}</h4>
                     <div className="flex items-center space-x-2 mt-1">
                       <span className="px-3 py-1 bg-[#D7243F]/20 border border-[#D7243F] text-[#D7243F] rounded-full text-sm">
-                        {testimonials[currentIndex].sport}
-                      </span>
-                      <span className="text-[#89D3EC] text-sm font-medium">
-                        {testimonials[currentIndex].achievement}
+                        {displayTestimonials[currentIndex].role}
                       </span>
                     </div>
                   </div>
@@ -124,7 +130,7 @@ const Testimonials = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          
+
           <button
             onClick={nextTestimonial}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-800/80 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors"
@@ -137,22 +143,21 @@ const Testimonials = () => {
 
         {/* Testimonial Indicators */}
         <div className="flex justify-center space-x-2 mb-16">
-          {testimonials.map((_, index) => (
+          {displayTestimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentIndex 
-                  ? 'bg-gradient-to-r from-[#D7243F] to-[#89D3EC]' 
-                  : 'bg-gray-600 hover:bg-gray-500'
-              }`}
+              className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex
+                ? 'bg-gradient-to-r from-[#D7243F] to-[#89D3EC]'
+                : 'bg-gray-600 hover:bg-gray-500'
+                }`}
             />
           ))}
         </div>
 
         {/* Testimonial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.slice(0, 6).map((testimonial, index) => (
+          {displayTestimonials.slice(0, 6).map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 30 }}
@@ -162,17 +167,15 @@ const Testimonials = () => {
               className="bg-gray-900/30 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 hover:border-[#89D3EC]/50 transition-colors"
             >
               <div className="flex items-center space-x-3 mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#D7243F] to-[#89D3EC] flex items-center justify-center text-white font-bold">
+                  {testimonial.name.charAt(0)}
+                </div>
                 <div>
                   <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                  <span className="text-[#D7243F] text-sm">{testimonial.sport}</span>
+                  <span className="text-[#D7243F] text-sm">{testimonial.role}</span>
                 </div>
               </div>
-              
+
               <div className="flex mb-3">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -180,11 +183,11 @@ const Testimonials = () => {
                   </svg>
                 ))}
               </div>
-              
+
               <p className="text-gray-300 text-sm leading-relaxed">
-                {testimonial.comment.length > 120 
-                  ? testimonial.comment.substring(0, 120) + "..." 
-                  : testimonial.comment
+                {testimonial.content.length > 120
+                  ? testimonial.content.substring(0, 120) + "..."
+                  : testimonial.content
                 }
               </p>
             </motion.div>

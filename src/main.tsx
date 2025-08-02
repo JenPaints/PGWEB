@@ -1,6 +1,8 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { ContentProvider } from "./contexts/ContentContext";
+import { analytics } from "./services/analytics";
 
 // Clear any existing service workers and caches immediately
 if ('serviceWorker' in navigator) {
@@ -22,6 +24,11 @@ if ('caches' in window) {
   });
 }
 
+// Initialize analytics
+analytics.initialize();
+
 createRoot(document.getElementById("root")!).render(
-  <App />
+  <ContentProvider>
+    <App />
+  </ContentProvider>
 );
