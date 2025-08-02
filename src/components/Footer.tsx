@@ -8,17 +8,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-3 mb-6"
             >
-              <img 
-                src="https://jenpaints.art/wp-content/uploads/2025/08/IMG_6671-removebg-preview.png" 
-                alt="Playgram Logo" 
+              <img
+                src="https://jenpaints.art/wp-content/uploads/2025/08/IMG_6671-removebg-preview.png"
+                alt="Playgram Logo"
                 className="w-26 h-26 object-contain"
               />
               <span className="text-2xl font-bold bg-gradient-to-r from-[#D7243F] to-[#89D3EC] bg-clip-text text-transparent">
-                
+
               </span>
             </motion.div>
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -66,7 +66,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 "Individual Training",
-                "Group Sessions", 
+                "Group Sessions",
                 "Online Coaching",
                 "Competition Prep",
                 "Youth Programs",
@@ -87,19 +87,15 @@ const Footer = () => {
             <div className="space-y-3 text-gray-300">
               <div className="flex items-start space-x-2">
                 <span>📍</span>
-                <span className="text-sm">123 Sports Complex<br />Athletic District, City 12345</span>
+                <span className="text-sm">4th Floor, BL Complex, 462, 16th Cross Rd,<br />Sector 4, HSR Layout, Bengaluru, Karnataka 560102</span>
               </div>
               <div className="flex items-center space-x-2">
                 <span>📞</span>
-                <span className="text-sm">+1 (555) 123-PLAY</span>
+                <span className="text-sm">+91 7483223862</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">hello@playgram.com</span>
-              </div>
-              <div className="flex items-start space-x-2">
-                <span>🕒</span>
-                <span className="text-sm">Mon-Fri: 6AM-10PM<br />Sat-Sun: 8AM-8PM</span>
+                <span className="text-sm">management@playgram.app</span>
               </div>
             </div>
           </div>

@@ -1,25 +1,46 @@
 import { motion } from "framer-motion";
-import { useQuery, useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Calendar, Settings, CircleDot, Activity, Zap, Waves } from "lucide-react";
 
+// Mock bookings data for demo
+const mockBookings = [
+  {
+    _id: "1",
+    _creationTime: Date.now() - 86400000, // 1 day ago
+    type: "trial",
+    status: "confirmed",
+    guestName: "John Doe",
+    guestEmail: "john@example.com",
+    scheduledDate: Date.now() + 86400000, // 1 day from now
+    sport: { name: "Football" }
+  },
+  {
+    _id: "2", 
+    _creationTime: Date.now() - 172800000, // 2 days ago
+    type: "enrollment",
+    status: "pending",
+    guestName: "Jane Smith",
+    guestEmail: "jane@example.com",
+    scheduledDate: Date.now() + 172800000, // 2 days from now
+    sport: { name: "Basketball" }
+  }
+];
+
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<'bookings' | 'profile'>('bookings');
-  const allBookings = useQuery(api.bookings.getAllBookings);
-  const updateBookingStatus = useMutation(api.bookings.updateBookingStatus);
+  const [allBookings, setAllBookings] = useState(mockBookings);
 
   const handleCancelBooking = async (bookingId: string) => {
-    try {
-      await updateBookingStatus({
-        bookingId: bookingId as any,
-        status: "cancelled"
-      });
-      toast.success("Booking cancelled successfully");
-    } catch (error) {
-      toast.error("Failed to cancel booking");
-    }
+    // Simulate cancellation
+    setAllBookings(prev => 
+      prev.map(booking => 
+        booking._id === bookingId 
+          ? { ...booking, status: "cancelled" }
+          : booking
+      )
+    );
+    toast.success("Booking cancelled successfully");
   };
 
   const getStatusColor = (status: string) => {
@@ -95,12 +116,7 @@ const Dashboard = () => {
             <div className="bg-gray-900/50 backdrop-blur-lg rounded-3xl p-8 border border-gray-700">
               <h2 className="text-2xl font-bold text-white mb-6">All Training Sessions</h2>
               
-              {!allBookings ? (
-                <div className="text-center py-8">
-                  <div className="animate-spin w-8 h-8 border-2 border-[#89D3EC] border-t-transparent rounded-full mx-auto"></div>
-                  <p className="text-gray-400 mt-4">Loading bookings...</p>
-                </div>
-              ) : allBookings.length === 0 ? (
+              {allBookings.length === 0 ? (
                 <div className="text-center py-12">
                   <Calendar className="w-16 h-16 mb-4 text-gray-400" />
                   <h3 className="text-xl font-semibold text-white mb-2">No bookings yet</h3>

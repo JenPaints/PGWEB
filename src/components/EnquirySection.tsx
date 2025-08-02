@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
 import { toast } from "sonner";
 import { Mail, Instagram, Facebook, Twitter, Youtube } from "lucide-react";
 
@@ -15,28 +13,16 @@ const EnquirySection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitEnquiry = useMutation(api.enquiries.submitEnquiry);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      await submitEnquiry({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || undefined,
-        sport: formData.sport,
-        message: formData.message,
-      });
-
+    // Simulate form submission for demo purposes
+    setTimeout(() => {
       toast.success("Enquiry submitted successfully! We'll get back to you soon.");
       setFormData({ name: "", email: "", phone: "", sport: "", message: "" });
-    } catch (error) {
-      toast.error("Failed to submit enquiry. Please try again.");
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1500);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -94,26 +80,20 @@ const EnquirySection = () => {
                 {
                   icon: "📍",
                   title: "Visit Our Facility",
-                  info: "123 Sports Complex, Athletic District, City 12345",
+                  info: "4th Floor, BL Complex, 462, 16th Cross Rd, Sector 4, HSR Layout, Bengaluru, Karnataka 560102",
                   gradient: "from-[#D7243F] to-red-600"
                 },
                 {
                   icon: "📞",
                   title: "Call Us",
-                  info: "+1 (555) 123-PLAY (7529)",
+                  info: "+91 7483223862",
                   gradient: "from-[#89D3EC] to-blue-500"
                 },
                 {
                   icon: <Mail className="w-6 h-6" />,
                   title: "Email Us", 
-                  info: "hello@playgram.com",
+                  info: "management@playgram.app",
                   gradient: "from-[#D7243F] to-[#89D3EC]"
-                },
-                {
-                  icon: "🕒",
-                  title: "Training Hours",
-                  info: "Mon-Fri: 6AM-10PM | Sat-Sun: 8AM-8PM",
-                  gradient: "from-purple-500 to-[#89D3EC]"
                 }
               ].map((contact, index) => (
                 <motion.div
