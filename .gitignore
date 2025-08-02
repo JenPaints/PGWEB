@@ -14,12 +14,10 @@ yarn.lock
 *.tsbuildinfo
 
 # Production build files
-build/
+
 
 # Compiled output
-*.js
-*.jsx
-*.d.ts
+
 
 # Editor directories and files
 .vscode/
