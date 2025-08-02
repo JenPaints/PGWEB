@@ -14,7 +14,6 @@ yarn.lock
 *.tsbuildinfo
 
 # Production build files
-dist/
 build/
 
 # Compiled output
