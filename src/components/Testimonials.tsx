@@ -4,57 +4,27 @@ import { useState, useEffect } from "react";
 const testimonials = [
   {
     id: 1,
-    name: "Alex Rodriguez",
-    sport: "Football",
+    name: "Arjun Prabhakar",
+    sport: "CEO",
     rating: 5,
-    comment: "Playgram transformed my game completely. The personalized coaching and detailed feedback helped me improve my technique and tactical understanding. I went from bench player to starting midfielder in just 6 months!",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-    achievement: "Starting Midfielder"
+    comment: "Our mission at Playgram is simple — to inspire, train, and transform lives through sports. We believe in nurturing not just skills, but confidence, discipline, and teamwork in every athlete.",
+    image: "https://www.socialagent.in/_next/image?url=%2Fassets%2Fdirectors%2Farjun.webp&w=1080&q=75",
   },
   {
     id: 2,
-    name: "Sarah Chen",
-    sport: "Basketball", 
+    name: "Deekshith",
+    sport: "Vice President", 
     rating: 5,
-    comment: "The basketball coaching program exceeded my expectations. The shooting drills and defensive strategies I learned here helped me secure a college scholarship. The coaches really care about your progress.",
+    comment: "At Playgram, we combine technology and sports expertise to make training smarter, more accessible, and more engaging. Our vision is to build the ultimate destination for sports lovers who want to learn, compete, and excel.",
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150",
-    achievement: "College Scholarship"
   },
   {
     id: 3,
-    name: "Marcus Johnson",
+    name: "Vishu",
     sport: "Swimming",
     rating: 5, 
-    comment: "As a competitive swimmer, I was struggling with my freestyle technique. The detailed stroke analysis and breathing exercises from Playgram helped me drop 3 seconds from my 100m time!",
+    comment: "",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
-    achievement: "3s Personal Best"
-  },
-  {
-    id: 4,
-    name: "Priya Patel",
-    sport: "Badminton",
-    rating: 5,
-    comment: "The badminton coaching here is world-class. My footwork and shot placement improved dramatically. I won my first tournament after just 4 months of training with Playgram!",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150", 
-    achievement: "Tournament Winner"
-  },
-  {
-    id: 5,
-    name: "David Kim",
-    sport: "Football",
-    rating: 5,
-    comment: "The tactical knowledge I gained from the football program is incredible. Understanding positioning and game flow has made me a much smarter player. Highly recommend to any serious footballer.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
-    achievement: "Team Captain"
-  },
-  {
-    id: 6,
-    name: "Emma Thompson", 
-    sport: "Basketball",
-    rating: 5,
-    comment: "Playgram's basketball program helped me develop confidence on the court. The mental conditioning and skill development sessions were game-changers for my performance.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
-    achievement: "MVP Award"
   }
 ];
 
@@ -94,7 +64,7 @@ const Testimonials = () => {
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="text-white">What Our </span>
             <span className="bg-gradient-to-r from-[#D7243F] to-[#89D3EC] bg-clip-text text-transparent">
-              Athletes Say
+              Founders Say
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -122,13 +92,7 @@ const Testimonials = () => {
               </div>
               
               <div className="flex-1 text-center md:text-left">
-                <div className="flex justify-center md:justify-start mb-4">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <svg key={i} className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
+
                 
                 <blockquote className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
                   "{testimonials[currentIndex].comment}"

@@ -57,8 +57,8 @@ export default function CardFlip({
                     <div className="from-[#D7243F]/5 absolute inset-0 bg-gradient-to-br via-transparent to-[#89D3EC]/5" />
 
                     {/* Animated code blocks */}
-                    <div className="absolute inset-0 flex items-center justify-center pt-20">
-                        <div className="relative flex h-[100px] w-[200px] flex-col items-center justify-center gap-2">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative flex h-[120px] w-[200px] flex-col items-center justify-center gap-2">
                             {/* Code blocks animation */}
                             {[...Array(6)].map((_, i) => (
                                 <div
@@ -77,7 +77,7 @@ export default function CardFlip({
                                 />
                             ))}
                             {/* Central Playgram logo */}
-                            <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="absolute inset-0 flex items-center justify-center z-10">
                                 <div
                                     className={cn(
                                         'h-16 w-16 rounded-xl',
@@ -86,7 +86,7 @@ export default function CardFlip({
                                         'flex items-center justify-center',
                                         'shadow-lg',
                                         'transition-all duration-500 group-hover:scale-110 group-hover:rotate-12',
-                                        'p-2'
+                                        'p-3'
                                     )}
                                 >
                                     <img 
@@ -146,7 +146,7 @@ export default function CardFlip({
                     <div className="relative z-10 flex-1 space-y-5">
                         <div className="space-y-2">
                             <div className="mb-2 flex items-center gap-2">
-                                <div className="bg-white/10 backdrop-blur-lg border border-white/20 flex h-8 w-8 items-center justify-center rounded-lg p-1">
+                                <div className="bg-white/10 backdrop-blur-lg border border-white/20 flex h-8 w-8 items-center justify-center rounded-lg p-1.5">
                                     <img 
                                         src="https://jenpaints.art/wp-content/uploads/2025/08/Screenshot_2025-07-13_at_22.16.29-removebg-preview.png"
                                         alt="Playgram Logo"

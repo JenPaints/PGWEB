@@ -7,7 +7,7 @@ const videos = [
     title: "Football Masterclass",
     sport: "Football",
     duration: "45 min",
-    thumbnail: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400",
+    thumbnail: "https://thephysiocompany.co.uk/wp-content/uploads/football.jpg",
     videoUrl: "https://player.vimeo.com/video/example1"
   },
   {
@@ -23,7 +23,7 @@ const videos = [
     title: "Badminton Techniques",
     sport: "Badminton",
     duration: "32 min", 
-    thumbnail: "https://images.unsplash.com/photo-1544717684-6e5e4c2b5b5b?w=400",
+    thumbnail: "https://us.yonex.com/cdn/shop/files/Product_Banner_BadmintonProRacquets_Mobile.jpg?v=1750184928&width=3840",
     videoUrl: "https://player.vimeo.com/video/example3"
   },
   {
@@ -31,7 +31,7 @@ const videos = [
     title: "Swimming Strokes",
     sport: "Swimming",
     duration: "41 min",
-    thumbnail: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=400", 
+    thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7QfPieiiNZen0w4VcS_D0uqeOj51HPK06Qg&s", 
     videoUrl: "https://player.vimeo.com/video/example4"
   },
   {

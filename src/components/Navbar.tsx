@@ -32,22 +32,13 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             <img
               src="https://jenpaints.art/wp-content/uploads/2025/08/IMG_6671-removebg-preview.png"
               alt="Playgram Logo"
-              className="w-20 h-20 object-contain"
+              className="w-32 h-32 object-contain"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              onClick={() => setCurrentView('home')}
-              className={`font-medium transition-colors ${currentView === 'home'
-                ? 'text-[#89D3EC]'
-                : 'text-gray-300 hover:text-[#89D3EC]'
-                }`}
-            >
-              Home
-            </motion.button>
+
 
             {/* Sports Dropdown */}
             <div className="relative">
@@ -106,7 +97,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-lg text-white font-medium text-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#D7243F]/90 to-[#89D3EC]/90 rounded-lg text-white font-medium text-sm shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Download className="w-4 h-4" />
                 <span>Download App</span>
@@ -147,18 +138,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             className="md:hidden bg-gray-800/95 backdrop-blur-lg border-t border-gray-700/50"
           >
             <div className="px-4 py-4 space-y-4">
-              <button
-                onClick={() => {
-                  setCurrentView('home');
-                  setIsOpen(false);
-                }}
-                className={`block w-full text-left transition-colors ${currentView === 'home'
-                  ? 'text-[#89D3EC]'
-                  : 'text-gray-300 hover:text-[#89D3EC]'
-                  }`}
-              >
-                Home
-              </button>
+
 
               <div className="space-y-2">
                 <span className="block text-gray-300 font-medium">Sports</span>
@@ -196,7 +176,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center justify-center space-x-2 w-full px-4 py-3 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-lg text-white font-medium shadow-lg"
+                  className="flex items-center justify-center space-x-2 w-full px-4 py-3 bg-gradient-to-r from-[#D7243F]/80 to-[#89D3EC]/80 rounded-lg text-white font-medium shadow-lg"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download App</span>

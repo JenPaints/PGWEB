@@ -73,7 +73,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         {/* Static background image - always visible */}
         <img
-          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop&crop=center"
+          src="https://jenpaints.art/wp-content/uploads/2025/08/Cinematic-Sports-Video-Basketball-_-Shoot-on-RED-_-LA-Clippers-_-Edit-@mathiskinny8361.mp4"
           alt="Sports Background"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
           onError={(e) => {
@@ -98,7 +98,7 @@ const HeroSection = () => {
             preload="none"
           >
             <source
-              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+              src="https://jenpaints.art/wp-content/uploads/2025/08/Cinematic-Sports-Video-Basketball-_-Shoot-on-RED-_-LA-Clippers-_-Edit-@mathiskinny8361.mp4"
               type="video/mp4"
             />
           </video>
@@ -134,7 +134,6 @@ const HeroSection = () => {
             {videoError && <div className="text-red-400">Using fallback image</div>}
           </div>
         )}
-
       </div>
 
       {/* Content */}
@@ -196,8 +195,6 @@ const HeroSection = () => {
             </motion.button>
           </motion.div>
         </motion.div>
-
-
       </div>
 
       {/* Scroll Indicator */}

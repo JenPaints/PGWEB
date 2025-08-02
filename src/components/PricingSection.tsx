@@ -108,10 +108,19 @@ const PricingSection = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div
-                className="w-6 h-6 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-full"
-                animate={{ x: billingCycle === 'yearly' ? 32 : 0 }}
+                className="w-6 h-6  rounded-full flex items-center justify-center p-1"
+                animate={{ 
+                  x: billingCycle === 'yearly' ? 32 : 0,
+                  rotateY: billingCycle === 'yearly' ? 180 : 0
+                }}
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
-              />
+              >
+                <img
+                  src="https://jenpaints.art/wp-content/uploads/2025/08/Screenshot_2025-07-13_at_22.16.29-removebg-preview.png"
+                  alt="Playgram Logo"
+                  className="w-full h-full object-contain"
+                />
+              </motion.div>
             </motion.button>
             <span className={`text-lg ${billingCycle === 'yearly' ? 'text-white' : 'text-gray-400'}`}>
               Yearly

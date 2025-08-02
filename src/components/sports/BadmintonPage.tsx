@@ -113,7 +113,7 @@ const BadmintonPage = ({ onBack }: BadmintonPageProps) => {
             >
               <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl overflow-hidden relative">
                 <img
-                  src="https://images.unsplash.com/photo-1544717684-6e5e4c2b5b5b?w=800"
+                  src="https://us.yonex.com/cdn/shop/files/Product_Banner_BadmintonProRacquets_Mobile.jpg?v=1750184928&width=3840"
                   alt="Badminton Training"
                   className="w-full h-full object-cover"
                 />

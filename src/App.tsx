@@ -9,6 +9,7 @@ import PricingSection from "./components/PricingSection";
 import CoachingPhotos from "./components/CoachingPhotos";
 import SportsProsBenefits from "./components/SportsProsBenefits";
 import AppPreview from "./components/AppPreview";
+import MacBookShowcase from "./components/MacBookShowcase";
 import Testimonials from "./components/Testimonials";
 import EnquirySection from "./components/EnquirySection";
 import Footer from "./components/Footer";
@@ -39,6 +40,7 @@ export default function App() {
             <PricingSection />
             <CoachingPhotos />
             <SportsProsBenefits />
+            <MacBookShowcase />
             <AppPreview />
             <Testimonials />
             <EnquirySection />

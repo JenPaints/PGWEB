@@ -45,18 +45,31 @@ const EnquirySection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <motion.h2 
+            className="text-5xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <span className="text-white">Ready to </span>
             <span className="bg-gradient-to-r from-[#D7243F] to-[#89D3EC] bg-clip-text text-transparent">
               Get Started?
             </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
             Have questions about our coaching programs? Want to know more about pricing or schedules? 
             We're here to help you begin your athletic journey.
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -65,6 +78,7 @@ const EnquirySection = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
             className="space-y-8"
           >
             <div>
@@ -101,6 +115,7 @@ const EnquirySection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                   className="flex items-start space-x-4 p-4 bg-gray-900/30 rounded-2xl border border-gray-700/50 hover:border-[#89D3EC]/50 transition-colors"
                 >
                   <div className="text-white">{contact.icon}</div>
@@ -143,6 +158,7 @@ const EnquirySection = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="bg-gray-900/50 backdrop-blur-lg rounded-3xl p-8 border border-gray-700">
               <h3 className="text-2xl font-bold text-white mb-6">Send us a Message</h3>
