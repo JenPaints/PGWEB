@@ -1,0 +1,234 @@
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Alex Rodriguez",
+    sport: "Football",
+    rating: 5,
+    comment: "Playgram transformed my game completely. The personalized coaching and detailed feedback helped me improve my technique and tactical understanding. I went from bench player to starting midfielder in just 6 months!",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    achievement: "Starting Midfielder"
+  },
+  {
+    id: 2,
+    name: "Sarah Chen",
+    sport: "Basketball", 
+    rating: 5,
+    comment: "The basketball coaching program exceeded my expectations. The shooting drills and defensive strategies I learned here helped me secure a college scholarship. The coaches really care about your progress.",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150",
+    achievement: "College Scholarship"
+  },
+  {
+    id: 3,
+    name: "Marcus Johnson",
+    sport: "Swimming",
+    rating: 5, 
+    comment: "As a competitive swimmer, I was struggling with my freestyle technique. The detailed stroke analysis and breathing exercises from Playgram helped me drop 3 seconds from my 100m time!",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150",
+    achievement: "3s Personal Best"
+  },
+  {
+    id: 4,
+    name: "Priya Patel",
+    sport: "Badminton",
+    rating: 5,
+    comment: "The badminton coaching here is world-class. My footwork and shot placement improved dramatically. I won my first tournament after just 4 months of training with Playgram!",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150", 
+    achievement: "Tournament Winner"
+  },
+  {
+    id: 5,
+    name: "David Kim",
+    sport: "Football",
+    rating: 5,
+    comment: "The tactical knowledge I gained from the football program is incredible. Understanding positioning and game flow has made me a much smarter player. Highly recommend to any serious footballer.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    achievement: "Team Captain"
+  },
+  {
+    id: 6,
+    name: "Emma Thompson", 
+    sport: "Basketball",
+    rating: 5,
+    comment: "Playgram's basketball program helped me develop confidence on the court. The mental conditioning and skill development sessions were game-changers for my performance.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
+    achievement: "MVP Award"
+  }
+];
+
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  return (
+    <section className="py-20 px-4 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-[#D7243F] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-[#89D3EC] rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="text-white">What Our </span>
+            <span className="bg-gradient-to-r from-[#D7243F] to-[#89D3EC] bg-clip-text text-transparent">
+              Athletes Say
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Join thousands of athletes who have transformed their game with Playgram's world-class coaching programs.
+          </p>
+        </motion.div>
+
+        {/* Main Testimonial */}
+        <div className="relative max-w-4xl mx-auto mb-16">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-900/50 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-gray-700"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0">
+                <img
+                  src={testimonials[currentIndex].image}
+                  alt={testimonials[currentIndex].name}
+                  className="w-24 h-24 rounded-full object-cover border-4 border-gradient-to-r from-[#D7243F] to-[#89D3EC]"
+                />
+              </div>
+              
+              <div className="flex-1 text-center md:text-left">
+                <div className="flex justify-center md:justify-start mb-4">
+                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                    <svg key={i} className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                
+                <blockquote className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
+                  "{testimonials[currentIndex].comment}"
+                </blockquote>
+                
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h4 className="text-white font-bold text-lg">{testimonials[currentIndex].name}</h4>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <span className="px-3 py-1 bg-[#D7243F]/20 border border-[#D7243F] text-[#D7243F] rounded-full text-sm">
+                        {testimonials[currentIndex].sport}
+                      </span>
+                      <span className="text-[#89D3EC] text-sm font-medium">
+                        {testimonials[currentIndex].achievement}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevTestimonial}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-800/80 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <button
+            onClick={nextTestimonial}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-800/80 hover:bg-gray-700 rounded-full flex items-center justify-center text-white transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Testimonial Indicators */}
+        <div className="flex justify-center space-x-2 mb-16">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full transition-colors ${
+                index === currentIndex 
+                  ? 'bg-gradient-to-r from-[#D7243F] to-[#89D3EC]' 
+                  : 'bg-gray-600 hover:bg-gray-500'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Testimonial Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.slice(0, 6).map((testimonial, index) => (
+            <motion.div
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-gray-900/30 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 hover:border-[#89D3EC]/50 transition-colors"
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div>
+                  <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                  <span className="text-[#D7243F] text-sm">{testimonial.sport}</span>
+                </div>
+              </div>
+              
+              <div className="flex mb-3">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {testimonial.comment.length > 120 
+                  ? testimonial.comment.substring(0, 120) + "..." 
+                  : testimonial.comment
+                }
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;
