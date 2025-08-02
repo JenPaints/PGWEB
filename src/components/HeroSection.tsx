@@ -69,33 +69,40 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        {/* Always show fallback image first, then overlay video when ready */}
+        {/* Static background image - always visible */}
         <img
-          src="https://jenpaints.art/wp-content/uploads/2025/07/image-3.png"
+          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop&crop=center"
           alt="Sports Background"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          onError={(e) => {
+            // Fallback to a solid gradient if image fails
+            e.currentTarget.style.display = 'none';
+          }}
         />
 
-        {/* Video overlay */}
-        <video
-          ref={videoRef}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded && !videoError ? 'opacity-40' : 'opacity-0'
-            }`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          crossOrigin="anonymous"
-        >
-          <source
-            src="https://jenpaints.art/wp-content/uploads/2025/08/Cinematic-Sports-Video-Basketball-Sony-A7SIII-Brunel-Tutonda-Shoot-by-mathiskinny-Mathiskinny-1080p-h264-youtube.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-black/80"></div>
+
+        {/* Optional video overlay - only if it loads successfully */}
+        {!showFallback && (
+          <video
+            ref={videoRef}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded && !videoError ? 'opacity-30' : 'opacity-0'
+              }`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+          >
+            <source
+              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+              type="video/mp4"
+            />
+          </video>
+        )}
 
         {/* Manual play button if autoplay fails */}
         {!videoLoaded && !videoError && (
@@ -128,7 +135,6 @@ const HeroSection = () => {
           </div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-gray-800/50 to-black/70"></div>
       </div>
 
       {/* Content */}
