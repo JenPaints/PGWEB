@@ -3,6 +3,8 @@ import "./index.css";
 import App from "./App";
 import { ContentProvider } from "./contexts/ContentContext";
 import { analytics } from "./services/analytics";
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
 
 // Clear any existing service workers and caches immediately
 if ('serviceWorker' in navigator) {
@@ -27,8 +29,15 @@ if ('caches' in window) {
 // Initialize analytics
 analytics.initialize();
 
+// Initialize Convex client
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
+
 createRoot(document.getElementById("root")!).render(
-  <ContentProvider>
-    <App />
-  </ContentProvider>
+  <ConvexProvider client={convex}>
+    <ConvexAuthProvider client={convex}>
+      <ContentProvider>
+        <App />
+      </ContentProvider>
+    </ConvexAuthProvider>
+  </ConvexProvider>
 );

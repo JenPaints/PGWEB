@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LogIn, MapPin } from "lucide-react";
 
 interface NavbarProps {
-  currentView: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin';
-  setCurrentView: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin') => void;
+  currentView: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin';
+  setCurrentView: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin') => void;
 }
 
 const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
@@ -50,7 +50,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={() => setCurrentView('home')}
-              className="text-white hover:text-[#86D5F0] transition-colors font-medium"
+              className="text-white hover:text-[#86D5F0] transition-colors font-medium text-sm"
             >
               Home
             </motion.button>
@@ -67,7 +67,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                 onClick={() => setCoachingDropdown(!coachingDropdown)}
                 className="text-white hover:text-[#86D5F0] transition-all duration-200 font-medium flex items-center space-x-1 px-2 py-1 rounded-md hover:bg-white/5"
               >
-                <span className="text-sm lg:text-base">Coaching</span>
+                <span className="text-sm">Coaching</span>
                 <svg className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-200 ${coachingDropdown ? 'rotate-180' : ''}`} fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
@@ -102,12 +102,10 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                           className="w-full p-3 lg:p-4 rounded-lg transition-all duration-200 text-left group"
                         >
                           <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-[#D7243F] to-[#B91C37] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                              <span className="text-white text-xs lg:text-sm font-bold">⚽</span>
-                            </div>
+
                             <div>
-                              <h4 className="text-white font-semibold text-sm lg:text-base group-hover:text-[#86D5F0] transition-colors">Football</h4>
-                              <p className="text-gray-400 text-xs lg:text-sm group-hover:text-gray-300 transition-colors">Master the beautiful game</p>
+                              <h4 className="text-white font-semibold text-sm group-hover:text-[#86D5F0] transition-colors">Football</h4>
+
                             </div>
                           </div>
                         </motion.button>
@@ -123,12 +121,10 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                           className="w-full p-3 lg:p-4 rounded-lg transition-all duration-200 text-left group"
                         >
                           <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-[#89D3EC] to-[#6BB6D6] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                              <span className="text-white text-xs lg:text-sm font-bold">🏀</span>
-                            </div>
+
                             <div>
-                              <h4 className="text-white font-semibold text-sm lg:text-base group-hover:text-[#D7243F] transition-colors">Basketball</h4>
-                              <p className="text-gray-400 text-xs lg:text-sm group-hover:text-gray-300 transition-colors">Elevate your court game</p>
+                              <h4 className="text-white font-semibold text-sm group-hover:text-[#D7243F] transition-colors">Basketball</h4>
+
                             </div>
                           </div>
                         </motion.button>
@@ -147,7 +143,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                className="text-white hover:text-[#86D5F0] transition-colors font-medium flex items-center space-x-1"
+                className="text-white hover:text-[#86D5F0] transition-colors font-medium flex items-center space-x-1 text-sm"
               >
                 <MapPin className="w-4 h-4" />
                 <span>{selectedLocation}</span>
@@ -174,7 +170,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                         whileHover={{ scale: 1.01 }}
                         className="text-left"
                       >
-                        <div className="text-[#89D3EC] text-lg font-semibold">Bangalore</div>
+                        <div className="text-[#89D3EC] text-sm font-semibold">Bangalore</div>
                       </motion.div>
 
                       {/* Mumbai - Coming Soon */}
@@ -182,7 +178,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                         whileHover={{ scale: 1.01 }}
                         className="text-left"
                       >
-                        <div className="text-gray-400 text-base font-medium">Mumbai</div>
+                        <div className="text-gray-400 text-sm font-medium">Mumbai</div>
                         <div className="text-gray-500 text-[8px] opacity-60">Coming Soon</div>
                       </motion.div>
 
@@ -191,7 +187,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                         whileHover={{ scale: 1.01 }}
                         className="text-left"
                       >
-                        <div className="text-gray-400 text-base font-medium">Delhi</div>
+                        <div className="text-gray-400 text-sm font-medium">Delhi</div>
                         <div className="text-gray-500 text-[8px] opacity-60">Coming Soon</div>
                       </motion.div>
 
@@ -200,7 +196,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                         whileHover={{ scale: 1.01 }}
                         className="text-left"
                       >
-                        <div className="text-gray-400 text-base font-medium">Mysore</div>
+                        <div className="text-gray-400 text-sm font-medium">Mysore</div>
                         <div className="text-gray-500 text-[8px] opacity-60">Coming Soon</div>
                       </motion.div>
                     </div>
@@ -214,6 +210,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setCurrentView('waitlist')}
                 className="px-6 py-2 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-full text-white font-medium text-sm shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 Download the App
@@ -222,10 +219,11 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setCurrentView('waitlist')}
                 className="flex items-center space-x-2 px-4 py-2 border border-white text-white rounded-full font-medium text-sm hover:bg-white hover:text-gray-900 transition-all duration-300"
               >
                 <LogIn className="w-4 h-4" />
-                <span>Login</span>
+                <span>Join Waitlist</span>
               </motion.button>
             </div>
           </div>
@@ -277,7 +275,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                   <span className="w-1 h-4 bg-gradient-to-b from-[#D7243F] to-[#89D3EC] rounded-full"></span>
                   <span>Coaching</span>
                 </div>
-                
+
                 <div className="pl-2 space-y-2">
                   {/* Mobile Football Option */}
                   <motion.button
@@ -290,9 +288,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                     className="w-full p-3 rounded-xl text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#D7243F]/10 hover:to-[#D7243F]/5 transition-all duration-200 text-left group border border-transparent hover:border-[#D7243F]/20"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D7243F] to-[#B91C37] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                        <span className="text-white text-sm font-bold">⚽</span>
-                      </div>
+                    
                       <div>
                         <div className="text-sm font-semibold group-hover:text-[#86D5F0] transition-colors">Football</div>
                         <div className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">Master the beautiful game</div>
@@ -311,9 +307,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                     className="w-full p-3 rounded-xl text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#89D3EC]/10 hover:to-[#89D3EC]/5 transition-all duration-200 text-left group border border-transparent hover:border-[#89D3EC]/20"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#89D3EC] to-[#6BB6D6] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                        <span className="text-white text-sm font-bold">🏀</span>
-                      </div>
+                      
                       <div>
                         <div className="text-sm font-semibold group-hover:text-[#D7243F] transition-colors">Basketball</div>
                         <div className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">Elevate your court game</div>
@@ -381,6 +375,10 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    setCurrentView('waitlist');
+                    setIsOpen(false);
+                  }}
                   className="w-full px-4 py-3 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-full text-white font-medium shadow-lg"
                 >
                   Download the App
@@ -389,10 +387,14 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    setCurrentView('waitlist');
+                    setIsOpen(false);
+                  }}
                   className="flex items-center justify-center space-x-2 w-full px-4 py-3 border border-white text-white rounded-full font-medium hover:bg-white hover:text-gray-900 transition-all duration-300"
                 >
                   <LogIn className="w-4 h-4" />
-                  <span>Login</span>
+                  <span>Join Waitlist</span>
                 </motion.button>
               </div>
             </div>

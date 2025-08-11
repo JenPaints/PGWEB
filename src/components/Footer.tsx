@@ -3,7 +3,7 @@ import { Mail, Instagram, Facebook, MapPin, Phone } from "lucide-react";
 import { useContent } from "../contexts/ContentContext";
 
 interface FooterProps {
-  setCurrentView?: (view: 'home' | 'football' | 'basketball' | 'admin') => void;
+  setCurrentView?: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'privacy' | 'terms' | 'cookies') => void;
 }
 
 const Footer = ({ setCurrentView }: FooterProps) => {
@@ -34,20 +34,23 @@ const Footer = ({ setCurrentView }: FooterProps) => {
             </p>
             <div className="flex space-x-4">
               {[
-                { name: "Instagram", icon: Instagram },
-                { name: "Facebook", icon: Facebook },
+                { name: "Instagram", icon: Instagram, url: "https://www.instagram.com/playgram.official" },
+                { name: "Facebook", icon: Facebook, url: "https://www.facebook.com/playgram.official/" },
 
               ].map((social) => {
                 const IconComponent = social.icon;
                 return (
-                  <motion.button
+                  <motion.a
                     key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     className="w-10 h-10 bg-gray-800/50 hover:bg-gradient-to-r hover:from-[#D7243F] hover:to-[#89D3EC] rounded-full flex items-center justify-center transition-all duration-300"
                   >
                     <IconComponent className="w-5 h-5 text-white" />
-                  </motion.button>
+                  </motion.a>
                 );
               })}
             </div>
@@ -74,10 +77,8 @@ const Footer = ({ setCurrentView }: FooterProps) => {
               {[
                 "Individual Training",
                 "Group Sessions",
-                "Online Coaching",
-                "Competition Prep",
-                "Youth Programs",
-                "Adult Classes"
+                "Competition",
+                "Tournaments"
               ].map((program) => (
                 <li key={program}>
                   <a href="#programs" className="text-gray-300 hover:text-[#89D3EC] transition-colors">
@@ -102,7 +103,7 @@ const Footer = ({ setCurrentView }: FooterProps) => {
                 {
                   icon: <Phone className="w-5 h-5" />,
                   title: "Call Us",
-                  info: "+91 7483223862",
+                  info: "+91 7888388817",
                   gradient: "from-[#89D3EC] to-blue-500"
                 },
                 {
@@ -143,15 +144,24 @@ const Footer = ({ setCurrentView }: FooterProps) => {
               © 2025 Playgram. All rights reserved.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#privacy" className="text-gray-400 hover:text-[#89D3EC] transition-colors">
+              <button
+                onClick={() => setCurrentView?.('privacy')}
+                className="text-gray-400 hover:text-[#89D3EC] transition-colors"
+              >
                 Privacy Policy
-              </a>
-              <a href="#terms" className="text-gray-400 hover:text-[#89D3EC] transition-colors">
+              </button>
+              <button
+                onClick={() => setCurrentView?.('terms')}
+                className="text-gray-400 hover:text-[#89D3EC] transition-colors"
+              >
                 Terms of Service
-              </a>
-              <a href="#cookies" className="text-gray-400 hover:text-[#89D3EC] transition-colors">
+              </button>
+              <button
+                onClick={() => setCurrentView?.('cookies')}
+                className="text-gray-400 hover:text-[#89D3EC] transition-colors"
+              >
                 Cookie Policy
-              </a>
+              </button>
               <button
                 onClick={() => setCurrentView?.('admin')}
                 className="text-gray-400 hover:text-[#89D3EC] transition-colors"

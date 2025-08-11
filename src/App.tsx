@@ -20,12 +20,16 @@ import FootballPage from "./components/sports/FootballPage";
 import BasketballPage from "./components/sports/BasketballPage";
 import BadmintonPage from "./components/sports/BadmintonPage";
 import SwimmingPage from "./components/sports/SwimmingPage";
+import WaitlistPage from "./components/WaitlistPage";
 import SectionTransition from "./components/ui/SectionTransition";
 import AdminWrapper from "./components/admin/AdminWrapper";
+import PrivacyPolicy from "./components/legal/PrivacyPolicy";
+import TermsOfService from "./components/legal/TermsOfService";
+import CookiePolicy from "./components/legal/CookiePolicy";
 import { analytics } from "./services/analytics";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'privacy' | 'terms' | 'cookies'>('home');
 
   // Check for admin route in URL and track page views
   useEffect(() => {
@@ -43,7 +47,11 @@ export default function App() {
       'basketball': 'Basketball Page',
       'badminton': 'Badminton Page',
       'swimming': 'Swimming Page',
-      'admin': 'Admin Dashboard'
+      'waitlist': 'Waitlist Page',
+      'admin': 'Admin Dashboard',
+      'privacy': 'Privacy Policy',
+      'terms': 'Terms of Service',
+      'cookies': 'Cookie Policy'
     };
 
     analytics.trackPageView(currentView, pageNames[currentView]);
@@ -54,17 +62,25 @@ export default function App() {
       case 'admin':
         return <AdminWrapper />;
       case 'football':
-        return <FootballPage onBack={() => setCurrentView('home')} />;
+        return <FootballPage onBack={() => setCurrentView('home')} setCurrentView={setCurrentView} />;
       case 'basketball':
-        return <BasketballPage onBack={() => setCurrentView('home')} />;
+        return <BasketballPage onBack={() => setCurrentView('home')} setCurrentView={setCurrentView} />;
       case 'badminton':
         return <BadmintonPage onBack={() => setCurrentView('home')} />;
       case 'swimming':
         return <SwimmingPage onBack={() => setCurrentView('home')} />;
+      case 'waitlist':
+        return <WaitlistPage onBack={() => setCurrentView('home')} />;
+      case 'privacy':
+        return <PrivacyPolicy setCurrentView={setCurrentView} />;
+      case 'terms':
+        return <TermsOfService setCurrentView={setCurrentView} />;
+      case 'cookies':
+        return <CookiePolicy setCurrentView={setCurrentView} />;
       default:
         return (
           <>
-            <HeroSection />
+            <HeroSection setCurrentView={setCurrentView} />
             <CoachingSection />
 
             <SectionTransition
@@ -76,15 +92,9 @@ export default function App() {
 
             <WholeExperienceSection />
 
-            
-            <SectionTransition
-              topGradient="from-transparent via-gray-900/60 to-gray-900"
-              marginTop="-mt-16"
-            >
-              <AppPreview />
-            </SectionTransition>
 
-            
+          
+
 
             <SectionTransition
               topGradient="from-transparent via-gray-900/50 to-gray-900"
@@ -105,8 +115,8 @@ export default function App() {
     }
   };
 
-  // Don't show navbar for admin view
-  if (currentView === 'admin') {
+  // Don't show navbar for admin and legal pages
+  if (currentView === 'admin' || currentView === 'privacy' || currentView === 'terms' || currentView === 'cookies') {
     return (
       <>
         {renderCurrentView()}

@@ -39,6 +39,15 @@ const applicationTables = {
     message: v.string(),
     status: v.union(v.literal("new"), v.literal("contacted"), v.literal("resolved")),
   }),
+
+  waitlist: defineTable({
+    name: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    sport: v.string(),
+    status: v.union(v.literal("pending"), v.literal("notified"), v.literal("converted")),
+    source: v.optional(v.string()),
+  }),
 };
 
 export default defineSchema({

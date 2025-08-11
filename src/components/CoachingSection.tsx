@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const CoachingSection = () => {
     return (
-        <section className="pt-16 sm:pt-20 lg:pt-24 pb-24 px-6 min-h-screen flex items-center bg-white" style={{
+        <section className="pt-2 sm:pt-3 lg:pt-4 pb-24 px-6 min-h-screen flex items-center bg-white" style={{
             background: 'radial-gradient(ellipse at top right, rgba(137, 211, 236, 0.08) 0%, transparent 60%), radial-gradient(ellipse at bottom left, rgba(215, 36, 63, 0.05) 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%)'
         }}>
             <div className="max-w-7xl mx-auto">

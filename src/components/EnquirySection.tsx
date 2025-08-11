@@ -102,7 +102,7 @@ const EnquirySection = () => {
                 {
                   icon: "📞",
                   title: "Call Us",
-                  info: "+91 7483223862",
+                  info: "+91 7888388817",
                   gradient: "from-[#89D3EC] to-blue-500"
                 },
                 {

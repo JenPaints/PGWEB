@@ -4,10 +4,30 @@ import { useState } from "react";
 
 interface FootballPageProps {
     onBack: () => void;
+    setCurrentView?: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'privacy' | 'terms' | 'cookies') => void;
 }
 
-const FootballPage = ({ onBack }: FootballPageProps) => {
+const FootballPage = ({ onBack, setCurrentView }: FootballPageProps) => {
     const [selectedLocation, setSelectedLocation] = useState('HSR Layout');
+    const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+    const [showComingSoon, setShowComingSoon] = useState(false);
+
+    const locations = [
+        { id: 'hsr', name: 'HSR Layout', available: true },
+        { id: 'coming-soon', name: 'Coming Soon', available: false }
+    ];
+
+    const handleLocationSelect = (location: typeof locations[0]) => {
+        if (location.available) {
+            setSelectedLocation(location.name);
+            setShowLocationDropdown(false);
+            setShowComingSoon(false);
+        } else {
+            setShowComingSoon(true);
+            setShowLocationDropdown(false);
+            setTimeout(() => setShowComingSoon(false), 3000);
+        }
+    };
 
     const pricingPlans = [
         {
@@ -67,15 +87,6 @@ const FootballPage = ({ onBack }: FootballPageProps) => {
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black"></div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
-                    <motion.button
-                        onClick={onBack}
-                        className="flex items-center space-x-2 text-gray-300 hover:text-white mb-8 transition-colors"
-                        whileHover={{ x: -5 }}
-                    >
-                        <ArrowLeft className="w-5 h-5" />
-                        <span>Back to Home</span>
-                    </motion.button>
-
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Left Content */}
                         <motion.div
@@ -107,7 +118,7 @@ const FootballPage = ({ onBack }: FootballPageProps) => {
                                 whileTap={{ scale: 0.95 }}
                                 className="inline-flex items-center space-x-2 px-6 py-3 bg-transparent border border-white rounded-full text-white font-medium hover:bg-white hover:text-gray-900 transition-all"
                             >
-                                <span>Get a Free Trial</span>
+                                <span>Book a Free Trial</span>
                                 <span className="text-lg">⚽</span>
                             </motion.button>
                         </motion.div>
@@ -120,11 +131,16 @@ const FootballPage = ({ onBack }: FootballPageProps) => {
                             className="relative"
                         >
                             <div className="aspect-[4/3] rounded-2xl overflow-hidden">
-                                <img
-                                    src="https://jenpaints.art/wp-content/uploads/2025/08/2nd-Section-1.png"
-                                    alt="Football Training"
+                                <video
+                                    src="https://jenpaints.art/wp-content/uploads/2025/08/IMG_8126.mp4"
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
                                     className="w-full h-full object-cover"
-                                />
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                         </motion.div>
                     </div>
@@ -173,12 +189,71 @@ const FootballPage = ({ onBack }: FootballPageProps) => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
                             viewport={{ once: true }}
-                            className="inline-flex items-center space-x-2 bg-gray-800/80 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50"
+                            className="relative inline-block"
                         >
-                            <MapPin className="w-5 h-5 text-[#89D3EC]" />
-                            <span className="text-white font-medium">{selectedLocation}</span>
-                            <ChevronDown className="w-4 h-4 text-gray-400" />
+                            <button
+                                onClick={() => setShowLocationDropdown(!showLocationDropdown)}
+                                className="inline-flex items-center space-x-2 bg-gray-800/80 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-[#89D3EC]/50 transition-all"
+                            >
+                                <MapPin className="w-5 h-5 text-[#89D3EC]" />
+                                <span className="text-white font-medium">{selectedLocation}</span>
+                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showLocationDropdown ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {/* Dropdown */}
+                            {showLocationDropdown && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="absolute top-full mt-2 left-0 right-0 bg-gray-800/95 backdrop-blur-sm rounded-xl border border-gray-700/50 overflow-hidden z-50"
+                                >
+                                    {locations.map((location) => (
+                                        <button
+                                            key={location.id}
+                                            onClick={() => handleLocationSelect(location)}
+                                            className={`w-full px-6 py-3 text-left hover:bg-gray-700/50 transition-all ${
+                                                selectedLocation === location.name ? 'bg-[#89D3EC]/10 text-[#89D3EC]' : 'text-white'
+                                            }`}
+                                        >
+                                            <span>{location.name}</span>
+                                        </button>
+                                    ))}
+                                </motion.div>
+                            )}
                         </motion.div>
+
+                        {/* Coming Soon Modal */}
+                        {showComingSoon && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+                                onClick={() => setShowComingSoon(false)}
+                            >
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="bg-gray-800 rounded-2xl p-8 border border-gray-700 max-w-md mx-4 text-center"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <div className="w-16 h-16 bg-gradient-to-r from-[#89D3EC] to-[#D7243F] rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <MapPin className="w-8 h-8 text-white" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white mb-2">Coming Soon!</h3>
+                                    <p className="text-gray-300 mb-6">
+                                        We're expanding to other locations. Stay tuned for updates!
+                                    </p>
+                                    <button
+                                        onClick={() => setShowComingSoon(false)}
+                                        className="px-6 py-2 bg-gradient-to-r from-[#89D3EC] to-[#D7243F] rounded-full text-white font-medium hover:shadow-lg transition-all"
+                                    >
+                                        Got it!
+                                    </button>
+                                </motion.div>
+                            </motion.div>
+                        )}
                     </div>
 
                     {/* Pricing Cards */}
@@ -252,6 +327,7 @@ const FootballPage = ({ onBack }: FootballPageProps) => {
                                     <motion.button
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
+                                        onClick={() => setCurrentView?.('waitlist')}
                                         className={`w-full py-3 rounded-full font-semibold mt-6 transition-all ${plan.popular
                                             ? 'bg-gradient-to-r from-[#89D3EC] to-[#D7243F] text-white shadow-lg'
                                             : 'bg-gradient-to-r from-[#D7243F] to-[#89D3EC] text-white hover:shadow-lg'
