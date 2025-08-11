@@ -80,7 +80,7 @@ const ComingSoonPage = () => {
                                 transition={{ duration: 1, delay: 0.6 }}
                                 className="space-y-6"
                             >
-                                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#D7243F] via-[#89D3EC] to-[#D7243F] bg-clip-text text-transparent">
+                                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-[#D7243F] via-[#89D3EC] to-[#D7243F] bg-clip-text text-transparent pt-8 pb-8 px-4">
                                     Coming Soon!
                                 </h1>
 
