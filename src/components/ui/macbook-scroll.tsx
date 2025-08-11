@@ -634,10 +634,10 @@ export const OptionKey = ({ className }: { className: string }) => {
 
 const PlaygramLogo = () => {
   return (
-    <img
-      src="https://jenpaints.art/wp-content/uploads/2025/08/IMG_6671-removebg-preview.png"
-      alt="Playgram Logo"
-      className="h-8 w-8 object-contain"
-    />
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 object-contain">
+      <circle cx="32" cy="32" r="32" fill="#0A0A0D" />
+      <text x="50%" y="55%" textAnchor="middle" fill="#89D3EC" fontSize="32" fontWeight="bold" fontFamily="Manrope, Arial, sans-serif" dy=".35em">G</text>
+      <text x="50%" y="35%" textAnchor="middle" fill="#D7243F" fontSize="18" fontWeight="bold" fontFamily="Manrope, Arial, sans-serif" dy=".35em">Play</text>
+    </svg>
   );
 };
