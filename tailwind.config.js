@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter var", ...fontFamily.sans],
+        manrope: ["Manrope", ...fontFamily.sans],
       },
       borderRadius: {
         DEFAULT: "8px",
@@ -21,6 +22,15 @@ export default {
       spacing: {
         "form-field": "16px",
         section: "32px",
+      },
+      animation: {
+        grid: "grid 15s linear infinite",
+      },
+      keyframes: {
+        grid: {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
     },
   },

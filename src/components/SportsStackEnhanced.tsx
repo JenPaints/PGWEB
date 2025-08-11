@@ -143,7 +143,9 @@ const SportsCarousel = ({ sports, handleBooking, getSportIcon, getSportGradient 
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+    <section className="relative py-20 overflow-hidden" style={{
+      background: 'radial-gradient(ellipse at center top, rgba(215, 36, 63, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom center, rgba(137, 211, 236, 0.08) 0%, transparent 60%), linear-gradient(135deg, #000000 0%, #0a0a0a 100%)'
+    }}>
       {/* Header */}
       <div className="text-center mb-16">
         <motion.h2

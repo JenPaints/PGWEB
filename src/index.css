@@ -76,6 +76,7 @@ html {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -290,4 +291,6 @@ html {
     --border-color-1: hsla(200, 75%, 90%, 0.2);
     --border-color-2: hsla(200, 50%, 90%, 0.75);
   }
+
+
 }

@@ -89,7 +89,7 @@ export default function CardFlip({
                                         'p-3'
                                     )}
                                 >
-                                    <img 
+                                    <img
                                         src="https://jenpaints.art/wp-content/uploads/2025/08/Screenshot_2025-07-13_at_22.16.29-removebg-preview.png"
                                         alt="Playgram Logo"
                                         className="w-full h-full object-contain"
@@ -147,7 +147,7 @@ export default function CardFlip({
                         <div className="space-y-2">
                             <div className="mb-2 flex items-center gap-2">
                                 <div className="bg-white/10 backdrop-blur-lg border border-white/20 flex h-8 w-8 items-center justify-center rounded-lg p-1.5">
-                                    <img 
+                                    <img
                                         src="https://jenpaints.art/wp-content/uploads/2025/08/Screenshot_2025-07-13_at_22.16.29-removebg-preview.png"
                                         alt="Playgram Logo"
                                         className="w-full h-full object-contain"

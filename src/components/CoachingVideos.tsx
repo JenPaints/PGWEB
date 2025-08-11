@@ -58,7 +58,9 @@ const CoachingVideos = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4" style={{
+      background: 'radial-gradient(ellipse at top center, rgba(137, 211, 236, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom left, rgba(215, 36, 63, 0.08) 0%, transparent 60%), linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%)'
+    }}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

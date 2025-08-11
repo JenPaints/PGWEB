@@ -81,9 +81,38 @@ const coachingPhotos = [
 
 const CoachingPhotos = () => {
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-      <CoachingParallax photos={coachingPhotos} />
-    </div>
+    <section className="relative min-h-screen py-20 bg-black overflow-hidden">
+      {/* Strong black background with subtle gradients */}
+      <div className="absolute inset-0 bg-black">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/20 to-black"></div>
+      </div>
+
+      {/* Subtle accent elements */}
+      <div className="absolute inset-0 opacity-8">
+        <div className="absolute top-20 right-20 w-32 h-32 bg-[#D7243F] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-40 h-40 bg-[#89D3EC] rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-full blur-3xl opacity-15"></div>
+      </div>
+
+      {/* Header Section */}
+      <div className="relative z-10 text-center mb-16 px-4">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Training in Action
+        </h2>
+        <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          Experience the intensity and dedication of our coaching sessions through these captured moments
+        </p>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        <CoachingParallax photos={coachingPhotos} />
+      </div>
+
+      {/* Border elements for better definition */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-700/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-700/50 to-transparent"></div>
+    </section>
   );
 };
 

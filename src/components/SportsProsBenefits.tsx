@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 import CardFlip from "./CardFlip";
 import { Users, Trophy, Shield, Zap, Target, Star } from "lucide-react";
 import { useContent } from "../contexts/ContentContext";
+import { RetroGrid } from "./ui/retro-grid";
 
 const SportsProsBenefits = () => {
   const { content } = useContent();
-  
+
   const playgramCards = [
     {
       title: "About Us",
@@ -46,7 +47,10 @@ const SportsProsBenefits = () => {
   ];
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <section className="py-20 px-4 relative overflow-hidden bg-white">
+      {/* RetroGrid Background */}
+      <RetroGrid className="opacity-60" />
+
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 right-20 w-40 h-40 bg-[#D7243F] rounded-full blur-3xl"></div>
@@ -57,20 +61,20 @@ const SportsProsBenefits = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-5xl md:text-6xl font-bold mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <span className="text-white">{content.benefits.title.split(' ').slice(0, -1).join(' ')} </span>
+            <span className="text-gray-900">{content.benefits.title.split(' ').slice(0, -1).join(' ')} </span>
             <span className="bg-gradient-to-r from-[#D7243F] via-[#89D3EC] to-[#D7243F] bg-clip-text text-transparent">
               {content.benefits.title.split(' ').slice(-1)[0]}
             </span>
           </motion.h2>
-          <motion.p 
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
+          <motion.p
+            className="text-xl text-gray-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -102,18 +106,18 @@ const SportsProsBenefits = () => {
         </div>
 
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-lg rounded-3xl p-8 border border-gray-600/30">
-            <h3 className="text-3xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 backdrop-blur-lg rounded-3xl p-8 border border-gray-200 shadow-lg">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
               Ready to Start Your Athletic Journey?
             </h3>
-            <p className="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
               Join thousands of athletes who have elevated their performance with Playgram's comprehensive coaching platform and expert guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -127,7 +131,7 @@ const SportsProsBenefits = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-[#89D3EC] text-[#89D3EC] rounded-full font-bold text-lg hover:bg-[#89D3EC] hover:text-gray-900 transition-all"
+                className="px-8 py-4 border-2 border-[#89D3EC] text-[#89D3EC] rounded-full font-bold text-lg hover:bg-[#89D3EC] hover:text-white transition-all"
               >
                 Book Free Trial
               </motion.button>

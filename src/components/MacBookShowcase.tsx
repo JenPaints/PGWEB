@@ -2,7 +2,9 @@ import { MacbookScroll } from "./ui/macbook-scroll";
 
 const MacBookShowcase = () => {
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+    <div className="overflow-hidden" style={{
+      background: 'radial-gradient(ellipse at bottom center, rgba(215, 36, 63, 0.1) 0%, transparent 50%), radial-gradient(ellipse at top right, rgba(137, 211, 236, 0.08) 0%, transparent 60%), linear-gradient(135deg, #000000 0%, #0a0a0a 100%)'
+    }}>
       <MacbookScroll
         title={
           <span className="text-white">

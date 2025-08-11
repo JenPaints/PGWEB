@@ -2,9 +2,12 @@ import { Toaster } from "sonner";
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
-import SportsStackEnhanced from "./components/SportsStackEnhanced";
+import CoachingSection from "./components/CoachingSection";
+import SportsSelection from "./components/SportsSelection";
+import WholeExperienceSection from "./components/WholeExperienceSection";
+import BetterExperienceSection from "./components/BetterExperienceSection";
 import PlaygramVelocitySection from "./components/PlaygramVelocitySection";
-import CoachingVideos from "./components/CoachingVideos";
+
 import PricingSection from "./components/PricingSection";
 import CoachingPhotos from "./components/CoachingPhotos";
 import SportsProsBenefits from "./components/SportsProsBenefits";
@@ -42,7 +45,7 @@ export default function App() {
       'swimming': 'Swimming Page',
       'admin': 'Admin Dashboard'
     };
-    
+
     analytics.trackPageView(currentView, pageNames[currentView]);
   }, [currentView]);
 
@@ -62,34 +65,22 @@ export default function App() {
         return (
           <>
             <HeroSection />
+            <CoachingSection />
 
             <SectionTransition
               topGradient="from-transparent via-gray-900/40 to-gray-900"
               marginTop="-mt-24"
             >
-              <SportsStackEnhanced />
+              <SportsSelection setCurrentView={setCurrentView} />
             </SectionTransition>
 
-            <SectionTransition
-              topGradient="from-gray-900 via-gray-800/70 to-transparent"
-              marginTop="-mt-20"
-            >
-              <CoachingVideos />
-            </SectionTransition>
+            <WholeExperienceSection />
 
-            <SectionTransition
-              topGradient="from-transparent via-gray-900/50 to-gray-900"
-              marginTop="-mt-16"
-            >
-              <PricingSection />
-            </SectionTransition>
+            <BetterExperienceSection />
 
-            <SectionTransition
-              topGradient="from-gray-900 via-gray-800/60 to-transparent"
-              marginTop="-mt-12"
-            >
-              <CoachingPhotos />
-            </SectionTransition>
+
+
+
 
             <SectionTransition
               topGradient="from-transparent via-gray-900/40 to-gray-900"
@@ -127,13 +118,18 @@ export default function App() {
             </SectionTransition>
 
             <SectionTransition
-              topGradient="from-gray-900 to-black"
+              topGradient="from-gray-900 via-gray-800/60 to-black"
               marginTop="-mt-8"
             >
               <Footer setCurrentView={setCurrentView} />
             </SectionTransition>
 
-            <PlaygramVelocitySection />
+            <SectionTransition
+              topGradient="from-black via-gray-900/30 to-black"
+              marginTop="-mt-1"
+            >
+              <PlaygramVelocitySection />
+            </SectionTransition>
           </>
         );
     }
@@ -150,7 +146,9 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-x-hidden scroll-smooth">
+    <div className="min-h-screen text-white overflow-x-hidden scroll-smooth" style={{
+      background: 'radial-gradient(ellipse at top left, rgba(215, 36, 63, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(137, 211, 236, 0.08) 0%, transparent 50%), linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%)'
+    }}>
       <Navbar currentView={currentView} setCurrentView={setCurrentView} />
       <div className="relative">
         {renderCurrentView()}

@@ -33,7 +33,9 @@ const EnquirySection = () => {
   };
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden" style={{
+      background: 'radial-gradient(ellipse at bottom left, rgba(137, 211, 236, 0.1) 0%, transparent 50%), radial-gradient(ellipse at top right, rgba(215, 36, 63, 0.08) 0%, transparent 60%), linear-gradient(135deg, #000000 0%, #0a0a0a 100%)'
+    }}>
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-[#D7243F] rounded-full blur-3xl"></div>
