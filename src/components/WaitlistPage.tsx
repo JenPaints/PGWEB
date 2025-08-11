@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Mail, User, Phone, CheckCircle, Loader2 } from "lucide-react";
 import { useMutation } from "convex/react";
-import { api } from "../../convex/_generated/api";
+import { api } from "../convex/_generated/api";
 import { analytics } from "../services/analytics";
 
 interface WaitlistPageProps {
