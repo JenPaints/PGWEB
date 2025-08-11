@@ -26,10 +26,11 @@ import AdminWrapper from "./components/admin/AdminWrapper";
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
 import TermsOfService from "./components/legal/TermsOfService";
 import CookiePolicy from "./components/legal/CookiePolicy";
+import ComingSoonPage from "./components/ComingSoonPage";
 import { analytics } from "./services/analytics";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'privacy' | 'terms' | 'cookies'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'privacy' | 'terms' | 'cookies' | 'coming-soon'>('coming-soon');
 
   // Check for admin route in URL and track page views
   useEffect(() => {
@@ -51,89 +52,23 @@ export default function App() {
       'admin': 'Admin Dashboard',
       'privacy': 'Privacy Policy',
       'terms': 'Terms of Service',
-      'cookies': 'Cookie Policy'
+      'cookies': 'Cookie Policy',
+      'coming-soon': 'Coming Soon Page'
     };
 
     analytics.trackPageView(currentView, pageNames[currentView]);
   }, [currentView]);
 
   const renderCurrentView = () => {
-    switch (currentView) {
-      case 'admin':
-        return <AdminWrapper />;
-      case 'football':
-        return <FootballPage onBack={() => setCurrentView('home')} setCurrentView={setCurrentView} />;
-      case 'basketball':
-        return <BasketballPage onBack={() => setCurrentView('home')} setCurrentView={setCurrentView} />;
-      case 'badminton':
-        return <BadmintonPage onBack={() => setCurrentView('home')} />;
-      case 'swimming':
-        return <SwimmingPage onBack={() => setCurrentView('home')} />;
-      case 'waitlist':
-        return <WaitlistPage onBack={() => setCurrentView('home')} />;
-      case 'privacy':
-        return <PrivacyPolicy setCurrentView={setCurrentView} />;
-      case 'terms':
-        return <TermsOfService setCurrentView={setCurrentView} />;
-      case 'cookies':
-        return <CookiePolicy setCurrentView={setCurrentView} />;
-      default:
-        return (
-          <>
-            <HeroSection setCurrentView={setCurrentView} />
-            <CoachingSection />
-
-            <SectionTransition
-              topGradient="from-transparent via-gray-900/40 to-gray-900"
-              marginTop="-mt-24"
-            >
-              <SportsSelection setCurrentView={setCurrentView} />
-            </SectionTransition>
-
-            <WholeExperienceSection />
-
-
-          
-
-
-            <SectionTransition
-              topGradient="from-transparent via-gray-900/50 to-gray-900"
-              marginTop="-mt-16"
-            >
-              <EnquirySection />
-            </SectionTransition>
-
-            <SectionTransition
-              topGradient="from-gray-900 via-gray-800/60 to-black"
-              marginTop="-mt-8"
-            >
-              <Footer setCurrentView={setCurrentView} />
-            </SectionTransition>
-
-          </>
-        );
-    }
+    // Always show Coming Soon page until it's manually removed
+    return <ComingSoonPage />;
   };
 
-  // Don't show navbar for admin and legal pages
-  if (currentView === 'admin' || currentView === 'privacy' || currentView === 'terms' || currentView === 'cookies') {
-    return (
-      <>
-        {renderCurrentView()}
-        <Toaster />
-      </>
-    );
-  }
-
+  // Always show Coming Soon page until manually removed
   return (
-    <div className="min-h-screen text-white overflow-x-hidden scroll-smooth" style={{
-      background: 'radial-gradient(ellipse at top left, rgba(215, 36, 63, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom right, rgba(137, 211, 236, 0.08) 0%, transparent 50%), linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%)'
-    }}>
-      <Navbar currentView={currentView} setCurrentView={setCurrentView} />
-      <div className="relative">
-        {renderCurrentView()}
-      </div>
+    <>
+      <ComingSoonPage />
       <Toaster />
-    </div>
+    </>
   );
 }

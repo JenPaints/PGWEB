@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LogIn, MapPin } from "lucide-react";
 
 interface NavbarProps {
-  currentView: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin';
-  setCurrentView: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin') => void;
+  currentView: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'coming-soon';
+  setCurrentView: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'waitlist' | 'admin' | 'coming-soon') => void;
 }
 
 const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
