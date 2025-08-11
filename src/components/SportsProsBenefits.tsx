@@ -113,30 +113,7 @@ const SportsProsBenefits = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 backdrop-blur-lg rounded-3xl p-8 border border-gray-200 shadow-lg">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Ready to Start Your Athletic Journey?
-            </h3>
-            <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
-              Join thousands of athletes who have elevated their performance with Playgram's comprehensive coaching platform and expert guidance
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(215, 36, 63, 0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-[#D7243F] to-[#89D3EC] rounded-full text-white font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
-              >
-                Download Playgram
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-[#89D3EC] text-[#89D3EC] rounded-full font-bold text-lg hover:bg-[#89D3EC] hover:text-white transition-all"
-              >
-                Book Free Trial
-              </motion.button>
-            </div>
-          </div>
+          
         </motion.div>
       </div>
     </section>

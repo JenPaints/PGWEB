@@ -78,8 +78,7 @@ const AppPreview = () => {
               className="text-xl text-gray-300 mb-8 leading-relaxed"
               variants={itemVariants}
             >
-              Take your training to the next level with our mobile app. Access personalized workouts,
-              track your progress, and connect with coaches anytime, anywhere.
+              Take your training to the next level with our mobile app. Track your progress, and connect with coaches anytime, anywhere.
             </motion.p>
 
             <motion.div
@@ -90,7 +89,7 @@ const AppPreview = () => {
                 {
                   icon: <Smartphone className="w-6 h-6" />,
                   title: "Personalized Training Plans",
-                  description: "AI-powered workouts tailored to your skill level and goals"
+                  description: "Tailored to your skill level and goals"
                 },
                 {
                   icon: <BarChart3 className="w-6 h-6" />,

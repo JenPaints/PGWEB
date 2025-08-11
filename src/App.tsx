@@ -76,26 +76,7 @@ export default function App() {
 
             <WholeExperienceSection />
 
-            <BetterExperienceSection />
-
-
-
-
-
-            <SectionTransition
-              topGradient="from-transparent via-gray-900/40 to-gray-900"
-              marginTop="-mt-16"
-            >
-              <SportsProsBenefits />
-            </SectionTransition>
-
-            <SectionTransition
-              topGradient="from-gray-900 via-gray-800/50 to-transparent"
-              marginTop="-mt-20"
-            >
-              <MacBookShowcase />
-            </SectionTransition>
-
+            
             <SectionTransition
               topGradient="from-transparent via-gray-900/60 to-gray-900"
               marginTop="-mt-16"
@@ -103,12 +84,7 @@ export default function App() {
               <AppPreview />
             </SectionTransition>
 
-            <SectionTransition
-              topGradient="from-gray-900 via-gray-800/40 to-transparent"
-              marginTop="-mt-12"
-            >
-              <Testimonials />
-            </SectionTransition>
+            
 
             <SectionTransition
               topGradient="from-transparent via-gray-900/50 to-gray-900"
@@ -124,12 +100,6 @@ export default function App() {
               <Footer setCurrentView={setCurrentView} />
             </SectionTransition>
 
-            <SectionTransition
-              topGradient="from-black via-gray-900/30 to-black"
-              marginTop="-mt-1"
-            >
-              <PlaygramVelocitySection />
-            </SectionTransition>
           </>
         );
     }

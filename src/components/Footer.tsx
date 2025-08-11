@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Mail, Instagram, Facebook, Twitter, Youtube } from "lucide-react";
+import { Mail, Instagram, Facebook, MapPin, Phone } from "lucide-react";
 import { useContent } from "../contexts/ContentContext";
 
 interface FooterProps {
-  setCurrentView?: (view: 'home' | 'football' | 'basketball' | 'badminton' | 'swimming' | 'admin') => void;
+  setCurrentView?: (view: 'home' | 'football' | 'basketball' | 'admin') => void;
 }
 
 const Footer = ({ setCurrentView }: FooterProps) => {
@@ -36,8 +36,7 @@ const Footer = ({ setCurrentView }: FooterProps) => {
               {[
                 { name: "Instagram", icon: Instagram },
                 { name: "Facebook", icon: Facebook },
-                { name: "Twitter", icon: Twitter },
-                { name: "YouTube", icon: Youtube }
+
               ].map((social) => {
                 const IconComponent = social.icon;
                 return (
@@ -58,7 +57,7 @@ const Footer = ({ setCurrentView }: FooterProps) => {
           <div>
             <h3 className="text-white font-bold text-lg mb-6">Sports</h3>
             <ul className="space-y-3">
-              {["Football", "Basketball", "Badminton", "Swimming"].map((sport) => (
+              {["Football", "Basketball"].map((sport) => (
                 <li key={sport}>
                   <a href={`#${sport.toLowerCase()}`} className="text-gray-300 hover:text-[#89D3EC] transition-colors">
                     {sport}
@@ -92,21 +91,47 @@ const Footer = ({ setCurrentView }: FooterProps) => {
           {/* Contact Section */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6">Contact</h3>
-            <div className="space-y-3 text-gray-300">
-              {content.footer.address && (
-                <div className="flex items-start space-x-2">
-                  <span>📍</span>
-                  <span className="text-sm">{content.footer.address}</span>
-                </div>
-              )}
-              <div className="flex items-center space-x-2">
-                <span>📞</span>
-                <span className="text-sm">{content.footer.phone}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4" />
-                <span className="text-sm">{content.footer.email}</span>
-              </div>
+            <div className="space-y-6">
+              {[
+                {
+                  icon: <MapPin className="w-5 h-5" />,
+                  title: "Visit Our Facility",
+                  info: "4th Floor, BL Complex, 462, 16th Cross Rd, Sector 4, HSR Layout, Bengaluru, Karnataka 560102",
+                  gradient: "from-[#D7243F] to-red-600"
+                },
+                {
+                  icon: <Phone className="w-5 h-5" />,
+                  title: "Call Us",
+                  info: "+91 7483223862",
+                  gradient: "from-[#89D3EC] to-blue-500"
+                },
+                {
+                  icon: <Mail className="w-5 h-5" />,
+                  title: "Email Us",
+                  info: "support@playgram.app",
+                  gradient: "from-[#D7243F] to-[#89D3EC]"
+                }
+              ].map((contact, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  className="group cursor-pointer"
+                >
+                  <div className="flex items-start space-x-3 p-3 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-all duration-300">
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${contact.gradient} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                      <div className="text-white">{contact.icon}</div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-white font-semibold text-sm mb-1 group-hover:text-[#89D3EC] transition-colors">
+                        {contact.title}
+                      </h4>
+                      <p className="text-gray-300 text-xs leading-relaxed group-hover:text-white transition-colors">
+                        {contact.info}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -127,7 +152,7 @@ const Footer = ({ setCurrentView }: FooterProps) => {
               <a href="#cookies" className="text-gray-400 hover:text-[#89D3EC] transition-colors">
                 Cookie Policy
               </a>
-              <button 
+              <button
                 onClick={() => setCurrentView?.('admin')}
                 className="text-gray-400 hover:text-[#89D3EC] transition-colors"
               >

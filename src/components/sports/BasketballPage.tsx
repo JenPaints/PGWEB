@@ -1,11 +1,65 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Play, Users, Trophy, Target, Clock, Activity } from "lucide-react";
+import { ArrowLeft, Play, Users, Trophy, Target, Clock, Activity, MapPin, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 interface BasketballPageProps {
   onBack: () => void;
 }
 
 const BasketballPage = ({ onBack }: BasketballPageProps) => {
+  const [selectedLocation, setSelectedLocation] = useState('HSR Layout');
+
+  const pricingPlans = [
+    {
+      duration: "1 Month",
+      pricePerSession: "₹400",
+      originalPricePerSession: "₹470",
+      sessions: 12,
+      totalPrice: "₹4,800",
+      originalTotalPrice: "₹5,640",
+      discount: null,
+      batches: ["T", "T", "S"],
+      timings: "6pm - 7:30pm",
+      popular: false
+    },
+    {
+      duration: "3 Months",
+      pricePerSession: "₹380",
+      originalPricePerSession: "₹470",
+      sessions: 36,
+      totalPrice: "₹13,680",
+      originalTotalPrice: "₹16,920",
+      discount: "5% Off",
+      batches: ["T", "T", "S"],
+      timings: "6pm - 7:30pm",
+      popular: true
+    },
+    {
+      duration: "6 Months",
+      pricePerSession: "₹360",
+      originalPricePerSession: "₹470",
+      sessions: 72,
+      totalPrice: "₹25,920",
+      originalTotalPrice: "₹33,840",
+      discount: "10% Off",
+      batches: ["T", "T", "S"],
+      timings: "6pm - 7:30pm",
+      popular: false
+    },
+    {
+      duration: "12 Months",
+      pricePerSession: "₹320",
+      originalPricePerSession: "₹470",
+      sessions: 144,
+      totalPrice: "₹46,080",
+      originalTotalPrice: "₹67,680",
+      discount: "20% Off",
+      batches: ["T", "T", "S"],
+      timings: "6pm - 7:30pm",
+      popular: false
+    }
+  ];
+
   const features = [
     {
       icon: Target,
@@ -38,7 +92,7 @@ const BasketballPage = ({ onBack }: BasketballPageProps) => {
     },
     {
       name: "Sarah Williams",
-      experience: "15+ years", 
+      experience: "15+ years",
       specialty: "Defense & Strategy",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150"
     },
@@ -51,10 +105,11 @@ const BasketballPage = ({ onBack }: BasketballPageProps) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-      {/* Header */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-[#D7243F]/20"></div>
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden min-h-screen flex items-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black"></div>
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
           <motion.button
             onClick={onBack}
@@ -66,70 +121,218 @@ const BasketballPage = ({ onBack }: BasketballPageProps) => {
           </motion.button>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              <div className="flex items-center space-x-4 mb-6">
-                <Activity className="w-16 h-16 text-white" />
-                <h1 className="text-5xl md:text-6xl font-bold">
-                  <span className="bg-gradient-to-r from-orange-500 to-[#D7243F] bg-clip-text text-transparent">
-                    Basketball
-                  </span>
+              <div>
+                <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                  <span className="text-white">Basketball </span>
+                  <span className="text-white">Coaching</span>
                   <br />
-                  <span className="text-white">Mastery</span>
+                  <span className="text-white">That Matches Your</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-orange-500 to-[#D7243F] bg-clip-text text-transparent">
+                    Goals
+                  </span>
                 </h1>
-              </div>
-              
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Elevate your basketball IQ with comprehensive training in shooting, dribbling, defense, 
-                and team strategies from experienced coaches who've trained professional players.
-              </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-gradient-to-r from-orange-500 to-[#D7243F] rounded-full text-white font-bold text-lg shadow-lg"
-                >
-                  Start Free Trial
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 border-2 border-orange-500 text-orange-500 rounded-full font-bold text-lg hover:bg-orange-500 hover:text-white transition-all"
-                >
-                  View Programs
-                </motion.button>
+                <p className="text-lg text-gray-300 leading-relaxed max-w-lg">
+                  Step into a sport-first experience made for every age,
+                  every skill level, and every goal.
+                </p>
               </div>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-transparent border border-white rounded-full text-white font-medium hover:bg-white hover:text-gray-900 transition-all"
+              >
+                <span>Get a Free Trial</span>
+                <span className="text-lg">🏀</span>
+              </motion.button>
             </motion.div>
 
+            {/* Right Image */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-700 rounded-3xl overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800"
                   alt="Basketball Training"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white/20 backdrop-blur-lg rounded-full flex items-center justify-center"
-                >
-                  <Play className="w-8 h-8 text-white ml-1" />
-                </motion.button>
               </div>
             </motion.div>
           </div>
         </div>
       </div>
+
+      {/* Pricing Section */}
+      <section className="py-24 px-4 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center px-4 py-2 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-full text-sm text-gray-300 mb-6"
+            >
+              <span className="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+              Training Packages
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-bold text-white mb-4"
+            >
+              Choose Your <span className="bg-gradient-to-r from-orange-500 to-[#D7243F] bg-clip-text text-transparent">Game Plan</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-lg text-gray-400 max-w-2xl mx-auto mb-8"
+            >
+              Professional basketball coaching tailored to your schedule and goals
+            </motion.p>
+
+            {/* Location Selector */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center space-x-2 bg-gray-800/80 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50"
+            >
+              <MapPin className="w-5 h-5 text-orange-500" />
+              <span className="text-white font-medium">{selectedLocation}</span>
+              <ChevronDown className="w-4 h-4 text-gray-400" />
+            </motion.div>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <motion.div
+                key={plan.duration}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`relative bg-gray-800 rounded-2xl p-6 border transition-all ${plan.popular
+                    ? 'border-orange-500 shadow-lg shadow-orange-500/20 scale-105'
+                    : 'border-gray-700 hover:border-orange-500/30'
+                  }`}
+              >
+                {/* Popular Badge */}
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-500 to-[#D7243F] text-white text-xs font-bold px-4 py-1 rounded-full">
+                    Most Popular
+                  </div>
+                )}
+
+                {/* Discount Badge */}
+                {plan.discount && (
+                  <div className="absolute -top-3 -right-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-3 py-1 rounded-full">
+                    {plan.discount}
+                  </div>
+                )}
+
+                <div className="space-y-4">
+                  {/* Duration */}
+                  <h3 className="text-xl font-bold text-white">{plan.duration}</h3>
+
+                  {/* Per Session Price - Most Prominent */}
+                  <div className="text-center bg-gradient-to-r from-orange-500/20 to-[#D7243F]/20 rounded-lg p-4 border border-orange-500/30">
+                    <div className="flex items-baseline justify-center space-x-2 mb-1">
+                      <span className="text-3xl font-bold text-orange-500">{plan.pricePerSession}</span>
+                      <span className="text-sm text-gray-500 line-through">{plan.originalPricePerSession}</span>
+                    </div>
+                    <div className="text-sm text-gray-300">per session</div>
+                  </div>
+
+                  {/* Sessions Count */}
+                  <div className="text-center">
+                    <div className="text-lg font-semibold text-white">{plan.sessions} Sessions</div>
+                    <div className="text-sm text-gray-400">Total: {plan.totalPrice}</div>
+                  </div>
+
+                  {/* Batch Days */}
+                  <div>
+                    <span className="text-sm text-gray-400 block mb-2">Batch:</span>
+                    <div className="flex space-x-2">
+                      {plan.batches.map((day, dayIndex) => (
+                        <span key={dayIndex} className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-sm text-white">
+                          {day}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Timings */}
+                  <div>
+                    <span className="text-sm text-gray-400 block mb-1">Timings:</span>
+                    <span className="text-sm bg-gray-700 rounded-full px-3 py-1 text-white">
+                      {plan.timings}
+                    </span>
+                  </div>
+
+                  {/* Enroll Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`w-full py-3 rounded-full font-semibold mt-6 transition-all ${plan.popular
+                        ? 'bg-gradient-to-r from-orange-500 to-[#D7243F] text-white shadow-lg'
+                        : 'bg-gradient-to-r from-[#D7243F] to-orange-500 text-white hover:shadow-lg'
+                      }`}
+                  >
+                    {plan.popular ? 'Choose Popular Plan' : 'Enroll Now'}
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <div className="inline-flex items-center space-x-6 text-sm text-gray-400">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>Professional Coaches</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>Flexible Scheduling</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>Progress Tracking</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Features Section */}
       <section className="py-20 px-4">

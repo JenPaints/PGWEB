@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...fontFamily.sans],
+        sans: ["Manrope", ...fontFamily.sans],
         manrope: ["Manrope", ...fontFamily.sans],
       },
       borderRadius: {

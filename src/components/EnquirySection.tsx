@@ -108,7 +108,7 @@ const EnquirySection = () => {
                 {
                   icon: <Mail className="w-6 h-6" />,
                   title: "Email Us", 
-                  info: "management@playgram.app",
+                  info: "support@playgram.app",
                   gradient: "from-[#D7243F] to-[#89D3EC]"
                 }
               ].map((contact, index) => (
@@ -136,8 +136,6 @@ const EnquirySection = () => {
                 {[
                   { name: "Instagram", icon: Instagram },
                   { name: "Facebook", icon: Facebook },
-                  { name: "Twitter", icon: Twitter },
-                  { name: "YouTube", icon: Youtube }
                 ].map((social, index) => {
                   const IconComponent = social.icon;
                   return (
@@ -227,8 +225,6 @@ const EnquirySection = () => {
                       <option value="">Select a sport</option>
                       <option value="Football">Football</option>
                       <option value="Basketball">Basketball</option>
-                      <option value="Badminton">Badminton</option>
-                      <option value="Swimming">Swimming</option>
                       <option value="Multiple">Multiple Sports</option>
                     </select>
                   </div>

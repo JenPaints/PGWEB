@@ -11,6 +11,7 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [locationDropdown, setLocationDropdown] = useState(false);
   const [coachingDropdown, setCoachingDropdown] = useState(false);
+  const [mobileLocationDropdown, setMobileLocationDropdown] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState('Bangalore');
 
   return (
@@ -20,8 +21,10 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-gray-700/30"
       style={{
         background: 'radial-gradient(ellipse at center, rgba(215, 36, 63, 0.08) 0%, transparent 50%), radial-gradient(ellipse at right, rgba(137, 211, 236, 0.06) 0%, transparent 50%), linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 10, 10, 0.8) 100%)',
-        borderBottomLeftRadius: "2rem",
-        borderBottomRightRadius: "2rem",
+        fontFamily: 'Manrope',
+        fontSize: '14px',
+        fontWeight: 500,
+        lineHeight: 'normal',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,24 +50,25 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={() => setCurrentView('home')}
-              className="text-white hover:text-[#89D3EC] transition-colors font-medium"
+              className="text-white hover:text-[#86D5F0] transition-colors font-medium"
             >
               Home
             </motion.button>
 
-            {/* Coaching Dropdown */}
+            {/* Coaching Dropdown - Optimized for all devices */}
             <div
               className="relative"
               onMouseEnter={() => setCoachingDropdown(true)}
               onMouseLeave={() => setCoachingDropdown(false)}
             >
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setCoachingDropdown(!coachingDropdown)}
-                className="text-white hover:text-[#89D3EC] transition-colors font-medium flex items-center space-x-1"
+                className="text-white hover:text-[#86D5F0] transition-all duration-200 font-medium flex items-center space-x-1 px-2 py-1 rounded-md hover:bg-white/5"
               >
-                <span>Coaching</span>
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <span className="text-sm lg:text-base">Coaching</span>
+                <svg className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-200 ${coachingDropdown ? 'rotate-180' : ''}`} fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
               </motion.button>
@@ -72,67 +76,62 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
               <AnimatePresence>
                 {coachingDropdown && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 mt-2 w-96 backdrop-blur-lg rounded-lg border border-gray-700/50 shadow-xl overflow-hidden"
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-0 mt-3 w-52 lg:w-56 backdrop-blur-xl rounded-xl border border-gray-700/30 shadow-2xl overflow-hidden z-50"
                     style={{
-                      background: 'radial-gradient(ellipse at top, rgba(215, 36, 63, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom, rgba(137, 211, 236, 0.08) 0%, transparent 50%), linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%)'
+                      background: 'radial-gradient(ellipse at top, rgba(215, 36, 63, 0.12) 0%, transparent 50%), radial-gradient(ellipse at bottom, rgba(137, 211, 236, 0.1) 0%, transparent 50%), linear-gradient(180deg, rgba(0, 0, 0, 0.96) 0%, rgba(10, 10, 10, 0.96) 100%)',
+                      fontFamily: 'Manrope',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
                     }}
                   >
-                    <div className="flex">
-                      {/* Left Side - Coaching Info */}
-                      <div className="w-1/3 p-4 border-r border-gray-700/50">
-                        <h3 className="text-white font-semibold mb-3">Our Coaching</h3>
-                      </div>
-
-                      {/* Right Side - Sport Previews */}
-                      <div className="w-2/3 p-2">
-                        <div className="space-y-2">
-                          {/* Football Preview */}
-                          <motion.button
-                            whileHover={{ backgroundColor: "rgba(215, 36, 63, 0.1)" }}
-                            onClick={() => {
-                              setCurrentView('football');
-                              setCoachingDropdown(false);
-                            }}
-                            className="w-full p-3 rounded-lg transition-colors text-left flex items-center space-x-3"
-                          >
-                            <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                              <img
-                                src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=100&h=100&fit=crop"
-                                alt="Football"
-                                className="w-full h-full object-cover"
-                              />
+                    <div className="p-3 lg:p-4">
+                      <div className="space-y-1">
+                        {/* Football Option */}
+                        <motion.button
+                          whileHover={{ backgroundColor: "rgba(215, 36, 63, 0.15)", x: 2 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => {
+                            setCurrentView('football');
+                            setCoachingDropdown(false);
+                          }}
+                          className="w-full p-3 lg:p-4 rounded-lg transition-all duration-200 text-left group"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-[#D7243F] to-[#B91C37] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                              <span className="text-white text-xs lg:text-sm font-bold">⚽</span>
                             </div>
                             <div>
-                              <h4 className="text-white font-medium">Football</h4>
-                              <p className="text-gray-400 text-xs">Master the beautiful game</p>
+                              <h4 className="text-white font-semibold text-sm lg:text-base group-hover:text-[#86D5F0] transition-colors">Football</h4>
+                              <p className="text-gray-400 text-xs lg:text-sm group-hover:text-gray-300 transition-colors">Master the beautiful game</p>
                             </div>
-                          </motion.button>
+                          </div>
+                        </motion.button>
 
-                          {/* Basketball Preview */}
-                          <motion.button
-                            whileHover={{ backgroundColor: "rgba(137, 211, 236, 0.1)" }}
-                            onClick={() => {
-                              setCurrentView('basketball');
-                              setCoachingDropdown(false);
-                            }}
-                            className="w-full p-3 rounded-lg transition-colors text-left flex items-center space-x-3"
-                          >
-                            <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                              <img
-                                src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=100&h=100&fit=crop"
-                                alt="Basketball"
-                                className="w-full h-full object-cover"
-                              />
+                        {/* Basketball Option */}
+                        <motion.button
+                          whileHover={{ backgroundColor: "rgba(137, 211, 236, 0.15)", x: 2 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => {
+                            setCurrentView('basketball');
+                            setCoachingDropdown(false);
+                          }}
+                          className="w-full p-3 lg:p-4 rounded-lg transition-all duration-200 text-left group"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-[#89D3EC] to-[#6BB6D6] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                              <span className="text-white text-xs lg:text-sm font-bold">🏀</span>
                             </div>
                             <div>
-                              <h4 className="text-white font-medium">Basketball</h4>
-                              <p className="text-gray-400 text-xs">Elevate your court game</p>
+                              <h4 className="text-white font-semibold text-sm lg:text-base group-hover:text-[#D7243F] transition-colors">Basketball</h4>
+                              <p className="text-gray-400 text-xs lg:text-sm group-hover:text-gray-300 transition-colors">Elevate your court game</p>
                             </div>
-                          </motion.button>
-                        </div>
+                          </div>
+                        </motion.button>
                       </div>
                     </div>
                   </motion.div>
@@ -141,11 +140,14 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             </div>
 
             {/* Location Dropdown */}
-            <div className="relative">
+            <div
+              className="relative"
+              onMouseEnter={() => setLocationDropdown(true)}
+              onMouseLeave={() => setLocationDropdown(false)}
+            >
               <motion.button
                 whileHover={{ scale: 1.05 }}
-                onClick={() => setLocationDropdown(!locationDropdown)}
-                className="text-white hover:text-[#89D3EC] transition-colors font-medium flex items-center space-x-1"
+                className="text-white hover:text-[#86D5F0] transition-colors font-medium flex items-center space-x-1"
               >
                 <MapPin className="w-4 h-4" />
                 <span>{selectedLocation}</span>
@@ -160,38 +162,48 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 mt-2 w-48 backdrop-blur-lg rounded-lg border border-gray-700/50 shadow-xl"
+                    className="absolute top-full left-0 mt-2 w-44 rounded-xl shadow-xl overflow-hidden"
                     style={{
-                      background: 'radial-gradient(ellipse at top, rgba(215, 36, 63, 0.1) 0%, transparent 50%), radial-gradient(ellipse at bottom, rgba(137, 211, 236, 0.08) 0%, transparent 50%), linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%)'
+                      background: '#1a1a1a',
+                      fontFamily: 'Manrope',
                     }}
                   >
-                    {[
-                      { name: "Mumbai", available: false },
-                      { name: "Delhi", available: false },
-                      { name: "Mysore", available: false }
-                    ].map((location) => (
-                      <motion.button
-                        key={location.name}
-                        whileHover={{ backgroundColor: "rgba(215, 36, 63, 0.1)" }}
-                        onClick={() => {
-                          if (location.available) {
-                            setSelectedLocation(location.name);
-                          }
-                          setLocationDropdown(false);
-                        }}
-                        className="block w-full text-left px-4 py-3 text-gray-300 hover:text-[#D7243F] transition-colors first:rounded-t-lg last:rounded-b-lg relative"
-                        disabled={!location.available}
+                    <div className="px-4 py-3 space-y-2">
+                      {/* Bangalore - Active */}
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className="text-left"
                       >
-                        <div className="flex items-center justify-between">
-                          <span className={location.available ? '' : 'opacity-60'}>{location.name}</span>
-                          {!location.available && (
-                            <span className="text-xs text-gray-500 bg-gray-700 px-2 py-1 rounded">
-                              Coming Soon
-                            </span>
-                          )}
-                        </div>
-                      </motion.button>
-                    ))}
+                        <div className="text-[#89D3EC] text-lg font-semibold">Bangalore</div>
+                      </motion.div>
+
+                      {/* Mumbai - Coming Soon */}
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className="text-left"
+                      >
+                        <div className="text-gray-400 text-base font-medium">Mumbai</div>
+                        <div className="text-gray-500 text-[8px] opacity-60">Coming Soon</div>
+                      </motion.div>
+
+                      {/* Delhi - Coming Soon */}
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className="text-left"
+                      >
+                        <div className="text-gray-400 text-base font-medium">Delhi</div>
+                        <div className="text-gray-500 text-[8px] opacity-60">Coming Soon</div>
+                      </motion.div>
+
+                      {/* Mysore - Coming Soon */}
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className="text-left"
+                      >
+                        <div className="text-gray-400 text-base font-medium">Mysore</div>
+                        <div className="text-gray-500 text-[8px] opacity-60">Coming Soon</div>
+                      </motion.div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -241,7 +253,11 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden backdrop-blur-lg border-t border-gray-700/30"
             style={{
-              background: 'radial-gradient(ellipse at bottom, rgba(137, 211, 236, 0.08) 0%, transparent 50%), radial-gradient(ellipse at top, rgba(215, 36, 63, 0.06) 0%, transparent 50%), linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%)'
+              background: 'radial-gradient(ellipse at bottom, rgba(137, 211, 236, 0.08) 0%, transparent 50%), radial-gradient(ellipse at top, rgba(215, 36, 63, 0.06) 0%, transparent 50%), linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%)',
+              fontFamily: 'Manrope',
+              fontSize: '14px',
+              fontWeight: 500,
+              lineHeight: 'normal',
             }}
           >
             <div className="px-4 py-4 space-y-4">
@@ -250,109 +266,114 @@ const Navbar = ({ currentView, setCurrentView }: NavbarProps) => {
                   setCurrentView('home');
                   setIsOpen(false);
                 }}
-                className="block text-white hover:text-[#89D3EC] transition-colors font-medium"
+                className="block text-white hover:text-[#86D5F0] transition-colors font-medium"
               >
                 Home
               </button>
 
-              {/* Mobile Coaching Section */}
+              {/* Mobile Coaching Section - Optimized and Always Expanded */}
+              <div className="space-y-3">
+                <div className="text-white font-semibold text-base flex items-center space-x-2">
+                  <span className="w-1 h-4 bg-gradient-to-b from-[#D7243F] to-[#89D3EC] rounded-full"></span>
+                  <span>Coaching</span>
+                </div>
+                
+                <div className="pl-2 space-y-2">
+                  {/* Mobile Football Option */}
+                  <motion.button
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      setCurrentView('football');
+                      setIsOpen(false);
+                    }}
+                    className="w-full p-3 rounded-xl text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#D7243F]/10 hover:to-[#D7243F]/5 transition-all duration-200 text-left group border border-transparent hover:border-[#D7243F]/20"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D7243F] to-[#B91C37] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <span className="text-white text-sm font-bold">⚽</span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold group-hover:text-[#86D5F0] transition-colors">Football</div>
+                        <div className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">Master the beautiful game</div>
+                      </div>
+                    </div>
+                  </motion.button>
+
+                  {/* Mobile Basketball Option */}
+                  <motion.button
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      setCurrentView('basketball');
+                      setIsOpen(false);
+                    }}
+                    className="w-full p-3 rounded-xl text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-[#89D3EC]/10 hover:to-[#89D3EC]/5 transition-all duration-200 text-left group border border-transparent hover:border-[#89D3EC]/20"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#89D3EC] to-[#6BB6D6] flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                        <span className="text-white text-sm font-bold">🏀</span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold group-hover:text-[#D7243F] transition-colors">Basketball</div>
+                        <div className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">Elevate your court game</div>
+                      </div>
+                    </div>
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Mobile Location Section */}
               <div className="space-y-2">
                 <button
-                  onClick={() => setCoachingDropdown(!coachingDropdown)}
-                  className="flex items-center justify-between w-full text-white hover:text-[#89D3EC] transition-colors font-medium"
+                  onClick={() => setMobileLocationDropdown(!mobileLocationDropdown)}
+                  className="flex items-center justify-between w-full text-white hover:text-[#86D5F0] transition-colors font-medium"
                 >
-                  <span>Coaching</span>
-                  <svg className={`w-4 h-4 transition-transform ${coachingDropdown ? 'rotate-180' : ''}`} fill="currentColor" viewBox="0 0 20 20">
+                  <div className="flex items-center space-x-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{selectedLocation}</span>
+                  </div>
+                  <svg className={`w-4 h-4 transition-transform ${mobileLocationDropdown ? 'rotate-180' : ''}`} fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
 
                 <AnimatePresence>
-                  {coachingDropdown && (
+                  {mobileLocationDropdown && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="pl-4 space-y-2 overflow-hidden"
+                      className="pl-6 space-y-1 overflow-hidden"
                     >
-                      <button
-                        onClick={() => {
-                          setCurrentView('football');
-                          setIsOpen(false);
-                          setCoachingDropdown(false);
-                        }}
-                        className="flex items-center space-x-3 w-full p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors"
-                      >
-                        <div className="w-8 h-8 rounded overflow-hidden flex-shrink-0">
-                          <img
-                            src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=50&h=50&fit=crop"
-                            alt="Football"
-                            className="w-full h-full object-cover"
-                          />
+                      {[
+                        { name: "Mumbai", available: false },
+                        { name: "Delhi", available: false },
+                        { name: "Mysore", available: false }
+                      ].map((location) => (
+                        <div key={location.name} className="text-left">
+                          <button
+                            onClick={() => {
+                              if (location.available) {
+                                setSelectedLocation(location.name);
+                                setMobileLocationDropdown(false);
+                              }
+                            }}
+                            className={`text-sm ${location.available ? 'text-gray-300 hover:text-[#86D5F0]' : 'text-gray-500'} transition-colors block`}
+                            disabled={!location.available}
+                          >
+                            {location.name}
+                          </button>
+                          {!location.available && (
+                            <div className="text-[8px] text-gray-500 opacity-60 mt-0.5">
+                              Coming Soon
+                            </div>
+                          )}
                         </div>
-                        <div className="text-left">
-                          <div className="text-sm font-medium">Football</div>
-                          <div className="text-xs text-gray-400">Master the beautiful game</div>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setCurrentView('basketball');
-                          setIsOpen(false);
-                          setCoachingDropdown(false);
-                        }}
-                        className="flex items-center space-x-3 w-full p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors"
-                      >
-                        <div className="w-8 h-8 rounded overflow-hidden flex-shrink-0">
-                          <img
-                            src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=50&h=50&fit=crop"
-                            alt="Basketball"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="text-left">
-                          <div className="text-sm font-medium">Basketball</div>
-                          <div className="text-xs text-gray-400">Elevate your court game</div>
-                        </div>
-                      </button>
+                      ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
-
-              {/* Mobile Location Section */}
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2 text-white font-medium">
-                  <MapPin className="w-4 h-4" />
-                  <span>{selectedLocation}</span>
-                </div>
-                <div className="pl-6 space-y-1">
-                  {[
-                    { name: "Mumbai", available: false },
-                    { name: "Delhi", available: false },
-                    { name: "Mysore", available: false }
-                  ].map((location) => (
-                    <div key={location.name} className="flex items-center justify-between">
-                      <button
-                        onClick={() => {
-                          if (location.available) {
-                            setSelectedLocation(location.name);
-                          }
-                        }}
-                        className={`text-sm ${location.available ? 'text-gray-300 hover:text-[#89D3EC]' : 'text-gray-500'} transition-colors`}
-                        disabled={!location.available}
-                      >
-                        {location.name}
-                      </button>
-                      {!location.available && (
-                        <span className="text-xs text-gray-500 bg-gray-700 px-2 py-1 rounded">
-                          Coming Soon
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
               </div>
 
               {/* Mobile Professional Buttons */}
